@@ -1,0 +1,477 @@
+{
+  "project": "Multimodal AI Hackathon 2026 - Track A: Cardiovascular Risk Visualization & Prediction",
+  "created_at": "2026-10-12T00:00:01.572514",
+  "is_production": false,
+  "isolation_directory": "D:\\multimodal ai\\Multimodal\\ml\\experimental_artifacts",
+  "dataset_rows": 303,
+  "dataset_scope": "Z-Alizadeh Sani Cardiovascular Dataset (N=303, Single-Center Research Cohort)",
+  "disclaimer": "Experimental research prototype output. Isolated from production ml/artifacts/. Not a clinical diagnostic device. Decision thresholds are provisional and reflect exploratory cross-validation on a small single-center cohort (N=303). Must not be used for medical decisions without external prospective validation.",
+  "feature_schema": {
+    "total_input_features": 54,
+    "numerical_features_count": 21,
+    "categorical_features_count": 33,
+    "numerical_features": [
+      "Age",
+      "Weight",
+      "Length",
+      "BMI",
+      "BP",
+      "PR",
+      "FBS",
+      "CR",
+      "TG",
+      "LDL",
+      "HDL",
+      "BUN",
+      "ESR",
+      "HB",
+      "K",
+      "Na",
+      "WBC",
+      "Lymph",
+      "Neut",
+      "PLT",
+      "EF-TTE"
+    ],
+    "categorical_features": [
+      "Sex",
+      "DM",
+      "HTN",
+      "Current Smoker",
+      "EX-Smoker",
+      "FH",
+      "Obesity",
+      "CRF",
+      "CVA",
+      "Airway disease",
+      "Thyroid Disease",
+      "CHF",
+      "DLP",
+      "Edema",
+      "Weak Peripheral Pulse",
+      "Lung rales",
+      "Systolic Murmur",
+      "Diastolic Murmur",
+      "Typical Chest Pain",
+      "Dyspnea",
+      "Function Class",
+      "Atypical",
+      "Nonanginal",
+      "LowTH Ang",
+      "Q Wave",
+      "St Elevation",
+      "St Depression",
+      "Tinversion",
+      "LVH",
+      "Poor R Progression",
+      "BBB",
+      "Region RWMA",
+      "VHD"
+    ],
+    "forbidden_features_excluded": [
+      "Cath",
+      "LAD",
+      "LCX",
+      "RCA",
+      "Exertional CP"
+    ]
+  },
+  "models": {
+    "Cath": {
+      "artifact_file": "model_cath.joblib",
+      "target_description": "Overall Coronary Artery Disease (Angiographic Catheterization Outcome)",
+      "positive_label": "CAD",
+      "negative_label": "Normal",
+      "model_name": "SoftVoting",
+      "model_type": "VotingClassifier",
+      "provisional_threshold": {
+        "value": 0.43,
+        "strategy_label": "f1_optimized",
+        "strategy_recommendation": "default_0.50 (for balanced triage) or f1_optimized (T~0.43 for screening)",
+        "status": "provisional",
+        "limitations": "Threshold was derived from outer-fold averages in 5-fold cross-validation. A cross-validation mean threshold is not guaranteed to be mathematically optimal for a pipeline retrained on 100% of samples (N=303). In production or clinical settings, decision thresholds must be established via prospective clinical decision-curve analysis and institutional cost-benefit matrices rather than empirical fold averages."
+      },
+      "cross_validation_evidence": {
+        "roc_auc": {
+          "mean": 0.9318,
+          "std": 0.0461
+        },
+        "brier_score": {
+          "mean": 0.1009,
+          "std": 0.0272
+        },
+        "default_0.50": {
+          "threshold": 0.5,
+          "accuracy": {
+            "mean": 0.8842,
+            "std": 0.0508
+          },
+          "recall": {
+            "mean": 0.9258,
+            "std": 0.0452
+          },
+          "precision": {
+            "mean": 0.9139,
+            "std": 0.0374
+          },
+          "f1": {
+            "mean": 0.9193,
+            "std": 0.0349
+          },
+          "total_cm": {
+            "tn": 68,
+            "fp": 19,
+            "fn": 16,
+            "tp": 200
+          }
+        },
+        "f1_optimized": {
+          "threshold": {
+            "mean": 0.43,
+            "std": 0.0672
+          },
+          "recall": {
+            "mean": 0.9396,
+            "std": 0.048
+          },
+          "precision": {
+            "mean": 0.8921,
+            "std": 0.0485
+          },
+          "f1": {
+            "mean": 0.9144,
+            "std": 0.0389
+          },
+          "accuracy": {
+            "mean": 0.8743,
+            "std": 0.0587
+          },
+          "delta_fn": -3,
+          "delta_fp": 6
+        },
+        "recall_focused_f2": {
+          "threshold": {
+            "mean": 0.284,
+            "std": 0.0564
+          },
+          "recall": {
+            "mean": 0.9674,
+            "std": 0.0431
+          },
+          "precision": {
+            "mean": 0.8232,
+            "std": 0.0239
+          },
+          "f1": {
+            "mean": 0.8891,
+            "std": 0.0274
+          },
+          "accuracy": {
+            "mean": 0.8283,
+            "std": 0.0405
+          },
+          "delta_fn": -9,
+          "delta_fp": 26
+        }
+      },
+      "selection_rationale": "Soft Voting achieved the highest overall discrimination (ROC-AUC 0.9318 \u00b1 0.0461) and highest accuracy (0.8842 \u00b1 0.0508) at the default threshold, with outstanding calibration (Brier 0.1009). By averaging probabilities, it combines Random Forest's high precision (0.9441) with Gradient Boosting's high recall (0.9351), missing only 16 CAD cases across all 216 diseased patients (FN=16). Under F1-optimized threshold (T=0.43), sensitivity further improves to 94.0% with only 13 missed cases."
+    },
+    "LAD": {
+      "artifact_file": "model_lad.joblib",
+      "target_description": "Left Anterior Descending Artery Stenosis (>=50% occlusion)",
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "model_name": "RandomForest",
+      "model_type": "RandomForestClassifier",
+      "provisional_threshold": {
+        "value": 0.446,
+        "strategy_label": "f1_optimized",
+        "strategy_recommendation": "f1_optimized (T~0.45, balancing 88.2% recall with 78.2% precision)",
+        "status": "provisional",
+        "limitations": "Threshold was derived from outer-fold averages in 5-fold cross-validation. A cross-validation mean threshold is not guaranteed to be mathematically optimal for a pipeline retrained on 100% of samples (N=303). In production or clinical settings, decision thresholds must be established via prospective clinical decision-curve analysis and institutional cost-benefit matrices rather than empirical fold averages."
+      },
+      "cross_validation_evidence": {
+        "roc_auc": {
+          "mean": 0.8449,
+          "std": 0.0564
+        },
+        "brier_score": {
+          "mean": 0.1757,
+          "std": 0.0178
+        },
+        "default_0.50": {
+          "threshold": 0.5,
+          "accuracy": {
+            "mean": 0.7857,
+            "std": 0.0488
+          },
+          "recall": {
+            "mean": 0.8367,
+            "std": 0.0392
+          },
+          "precision": {
+            "mean": 0.8062,
+            "std": 0.0448
+          },
+          "f1": {
+            "mean": 0.8207,
+            "std": 0.0376
+          },
+          "total_cm": {
+            "tn": 90,
+            "fp": 36,
+            "fn": 29,
+            "tp": 148
+          }
+        },
+        "f1_optimized": {
+          "threshold": {
+            "mean": 0.446,
+            "std": 0.0301
+          },
+          "recall": {
+            "mean": 0.8819,
+            "std": 0.0535
+          },
+          "precision": {
+            "mean": 0.7824,
+            "std": 0.0428
+          },
+          "f1": {
+            "mean": 0.828,
+            "std": 0.0366
+          },
+          "accuracy": {
+            "mean": 0.7857,
+            "std": 0.0488
+          },
+          "delta_fn": -8,
+          "delta_fp": 8
+        },
+        "recall_focused_f2": {
+          "threshold": {
+            "mean": 0.314,
+            "std": 0.0496
+          },
+          "recall": {
+            "mean": 0.9606,
+            "std": 0.0284
+          },
+          "precision": {
+            "mean": 0.6832,
+            "std": 0.0685
+          },
+          "f1": {
+            "mean": 0.7957,
+            "std": 0.0422
+          },
+          "accuracy": {
+            "mean": 0.7062,
+            "std": 0.0821
+          },
+          "delta_fn": -22,
+          "delta_fp": 46
+        }
+      },
+      "selection_rationale": "The LAD supplies the anterior myocardial wall, making balanced sensitivity clinically vital. Random Forest achieved the highest baseline accuracy (0.7857 \u00b1 0.0489) and F1-score (0.8207 \u00b1 0.0376) at T=0.50 with strong ROC-AUC (0.8449 \u00b1 0.0564). When operating under the F1-optimized threshold (T=0.45), Random Forest achieves 88.19% recall (reducing missed stenoses from 29 to 21) while maintaining 78.24% precision, matching ensemble performance without multi-model architectural overhead."
+    },
+    "LCX": {
+      "artifact_file": "model_lcx.joblib",
+      "target_description": "Left Circumflex Artery Stenosis (>=50% occlusion)",
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "model_name": "Stacking",
+      "model_type": "StackingClassifier",
+      "provisional_threshold": {
+        "value": 0.49,
+        "strategy_label": "youden_j",
+        "strategy_recommendation": "youden_j (T~0.49, optimal ROC operating point with F1=0.6481)",
+        "status": "provisional",
+        "limitations": "Threshold was derived from outer-fold averages in 5-fold cross-validation. A cross-validation mean threshold is not guaranteed to be mathematically optimal for a pipeline retrained on 100% of samples (N=303). In production or clinical settings, decision thresholds must be established via prospective clinical decision-curve analysis and institutional cost-benefit matrices rather than empirical fold averages."
+      },
+      "cross_validation_evidence": {
+        "roc_auc": {
+          "mean": 0.7186,
+          "std": 0.0765
+        },
+        "brier_score": {
+          "mean": 0.2209,
+          "std": 0.0153
+        },
+        "default_0.50": {
+          "threshold": 0.5,
+          "accuracy": {
+            "mean": 0.6734,
+            "std": 0.1065
+          },
+          "recall": {
+            "mean": 0.7062,
+            "std": 0.1079
+          },
+          "precision": {
+            "mean": 0.5746,
+            "std": 0.111
+          },
+          "f1": {
+            "mean": 0.6324,
+            "std": 0.1081
+          },
+          "total_cm": {
+            "tn": 120,
+            "fp": 64,
+            "fn": 35,
+            "tp": 84
+          }
+        },
+        "f1_optimized": {
+          "threshold": {
+            "mean": 0.438,
+            "std": 0.0421
+          },
+          "recall": {
+            "mean": 0.8149,
+            "std": 0.0864
+          },
+          "precision": {
+            "mean": 0.517,
+            "std": 0.0463
+          },
+          "f1": {
+            "mean": 0.6296,
+            "std": 0.0451
+          },
+          "accuracy": {
+            "mean": 0.6236,
+            "std": 0.0554
+          },
+          "delta_fn": -13,
+          "delta_fp": 28
+        },
+        "recall_focused_f2": {
+          "threshold": {
+            "mean": 0.378,
+            "std": 0.0293
+          },
+          "recall": {
+            "mean": 0.9152,
+            "std": 0.061
+          },
+          "precision": {
+            "mean": 0.4801,
+            "std": 0.0231
+          },
+          "f1": {
+            "mean": 0.6295,
+            "std": 0.0316
+          },
+          "accuracy": {
+            "mean": 0.5775,
+            "std": 0.0338
+          },
+          "delta_fn": -25,
+          "delta_fp": 54
+        }
+      },
+      "selection_rationale": "LCX stenosis is challenging due to subtle diagnostic signs and class imbalance (39.3% positive). Stacking achieved the highest ROC-AUC (0.7186 \u00b1 0.0765) and highest default F1-score (0.6324 \u00b1 0.1081). Crucially, Stacking's meta-model dynamically adjusted for Gradient Boosting's uncalibrated probability collapse (which missed 75 out of 119 cases), delivering 70.62% default sensitivity. Under Youden's J (T=0.49), it achieves 74.75% recall and 58.36% precision with optimal ROC balance."
+    },
+    "RCA": {
+      "artifact_file": "model_rca.joblib",
+      "target_description": "Right Coronary Artery Stenosis (>=50% occlusion)",
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "model_name": "Stacking",
+      "model_type": "StackingClassifier",
+      "provisional_threshold": {
+        "value": 0.46,
+        "strategy_label": "youden_j",
+        "strategy_recommendation": "youden_j (T~0.46, reducing missed stenoses with minimal false alarm increase)",
+        "status": "provisional",
+        "limitations": "Threshold was derived from outer-fold averages in 5-fold cross-validation. A cross-validation mean threshold is not guaranteed to be mathematically optimal for a pipeline retrained on 100% of samples (N=303). In production or clinical settings, decision thresholds must be established via prospective clinical decision-curve analysis and institutional cost-benefit matrices rather than empirical fold averages."
+      },
+      "cross_validation_evidence": {
+        "roc_auc": {
+          "mean": 0.7379,
+          "std": 0.0438
+        },
+        "brier_score": {
+          "mean": 0.2133,
+          "std": 0.012
+        },
+        "default_0.50": {
+          "threshold": 0.5,
+          "accuracy": {
+            "mean": 0.6732,
+            "std": 0.0556
+          },
+          "recall": {
+            "mean": 0.6834,
+            "std": 0.0878
+          },
+          "precision": {
+            "mean": 0.5612,
+            "std": 0.0718
+          },
+          "f1": {
+            "mean": 0.6117,
+            "std": 0.0558
+          },
+          "total_cm": {
+            "tn": 126,
+            "fp": 63,
+            "fn": 36,
+            "tp": 78
+          }
+        },
+        "f1_optimized": {
+          "threshold": {
+            "mean": 0.434,
+            "std": 0.0258
+          },
+          "recall": {
+            "mean": 0.7806,
+            "std": 0.0826
+          },
+          "precision": {
+            "mean": 0.5092,
+            "std": 0.0612
+          },
+          "f1": {
+            "mean": 0.6117,
+            "std": 0.0462
+          },
+          "accuracy": {
+            "mean": 0.6239,
+            "std": 0.073
+          },
+          "delta_fn": -11,
+          "delta_fp": 26
+        },
+        "recall_focused_f2": {
+          "threshold": {
+            "mean": 0.38,
+            "std": 0.0502
+          },
+          "recall": {
+            "mean": 0.8771,
+            "std": 0.0697
+          },
+          "precision": {
+            "mean": 0.4861,
+            "std": 0.052
+          },
+          "f1": {
+            "mean": 0.6211,
+            "std": 0.0276
+          },
+          "accuracy": {
+            "mean": 0.5938,
+            "std": 0.0642
+          },
+          "delta_fn": -22,
+          "delta_fp": 46
+        }
+      },
+      "selection_rationale": "Stacking achieved the highest ROC-AUC (0.7379 \u00b1 0.0438) and lowest Brier score (0.2133) on RCA. It maintains high sensitivity (68.34% at T=0.50, rising to 75.42% under Youden's J at T=0.46) while resisting the severe sensitivity collapse seen in unweighted tree models."
+    }
+  }
+}

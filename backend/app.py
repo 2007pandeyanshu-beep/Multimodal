@@ -41,6 +41,19 @@ async def lifespan(app: FastAPI):
         logger.info("All 4 target pipelines loaded successfully.")
     else:
         logger.warning(f"Model loading warnings: {model_manager.loading_errors}")
+
+    # Load isolated experimental model pipelines
+    try:
+        from backend.experimental_model_loader import experimental_model_manager, EXPERIMENTAL_ARTIFACTS_DIR
+        logger.info(f"Loading experimental pipelines from {EXPERIMENTAL_ARTIFACTS_DIR}...")
+        experimental_model_manager.load_all_models()
+        if experimental_model_manager.is_all_ready():
+            logger.info("All 4 experimental target pipelines loaded successfully.")
+        else:
+            logger.warning(f"Experimental model loading warnings: {experimental_model_manager.loading_errors}")
+    except Exception as e:
+        logger.warning(f"Failed to initialize experimental models in lifespan: {e}")
+
     yield
     logger.info("Shutting down API...")
 
@@ -226,3 +239,8 @@ async def predict_batch(batch_request: BatchPredictionRequest):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An error occurred during batch inference processing."
         )
+
+
+# Include isolated experimental endpoints
+from backend.experimental_routes import router as experimental_router
+app.include_router(experimental_router)
