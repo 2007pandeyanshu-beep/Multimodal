@@ -3,11 +3,12 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, OrbitControls, Center, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-interface HeartModelProps {
+export interface HeartModelProps {
   reducedMotion: boolean;
+  enableDrift?: boolean;
 }
 
-function HeartModel({ reducedMotion }: HeartModelProps) {
+export function HeartModel({ reducedMotion, enableDrift = true }: HeartModelProps) {
   const groupRef = useRef<THREE.Group>(null);
   
   // Load the CC-BY-4.0 Realistic Human Heart GLB model
@@ -76,10 +77,14 @@ function HeartModel({ reducedMotion }: HeartModelProps) {
 
     groupRef.current.scale.set(scaleX, scaleY, scaleZ);
 
-    // Subtle natural anatomical drifting rotation
-    groupRef.current.rotation.y = Math.sin(t * 0.35) * 0.12 + 0.1;
-    groupRef.current.rotation.x = Math.sin(t * 0.25) * 0.05 - 0.05;
-    groupRef.current.rotation.z = Math.cos(t * 0.3) * 0.04;
+    if (enableDrift) {
+      // Subtle natural anatomical drifting rotation
+      groupRef.current.rotation.y = Math.sin(t * 0.35) * 0.12 + 0.1;
+      groupRef.current.rotation.x = Math.sin(t * 0.25) * 0.05 - 0.05;
+      groupRef.current.rotation.z = Math.cos(t * 0.3) * 0.04;
+    } else {
+      groupRef.current.rotation.set(0, 0, 0);
+    }
   });
 
   return (
@@ -94,7 +99,7 @@ function HeartModel({ reducedMotion }: HeartModelProps) {
 // Preload the GLB model asset
 useGLTF.preload('/models/heart.glb');
 
-function LoadingHeartFallback() {
+export function LoadingHeartFallback() {
   return (
     <mesh>
       <sphereGeometry args={[1, 24, 24]} />

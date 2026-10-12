@@ -10,29 +10,24 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     font-family: var(--font-sans);
-    background-color: #070d1e;
+    background-color: #f8fafc;
     color: #0f172a;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Sharp diagonal divider clip-paths */
-.diagonal-split-left {
-  clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
+/* Performance-optimized Aurora Light styling */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-@media (max-width: 1024px) {
-  .diagonal-split-left {
-    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
-  }
-}
-
-@media (max-width: 768px) {
-  .diagonal-split-left {
-    clip-path: none;
+@media (prefers-reduced-motion: reduce) {
+  .animate-scanline {
+    animation: none !important;
   }
 }
 
@@ -43,10 +38,10 @@
     opacity: 0;
   }
   20% {
-    opacity: 0.6;
+    opacity: 0.5;
   }
   80% {
-    opacity: 0.6;
+    opacity: 0.5;
   }
   100% {
     transform: translateY(1000%);
@@ -55,42 +50,105 @@
 }
 
 .animate-scanline {
-  animation: scanline 7s ease-in-out infinite;
+  animation: scanline 8s ease-in-out infinite;
 }
 
-/* Radar pulse animation for HUD */
-@keyframes radar-pulse {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.3;
-  }
-  100% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
+/* Glassmorphism utilities for Aurora Light */
+.aurora-glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
-.animate-radar-pulse {
-  animation: radar-pulse 3s ease-in-out infinite;
+.aurora-glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(241, 245, 249, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
 }
 
-/* Custom dark scrollbar for modals & code preview */
+/* Custom scrollbars */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(241, 245, 249, 0.7);
   border-radius: 9999px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(51, 65, 85, 0.8);
+  background: rgba(148, 163, 184, 0.6);
   border-radius: 9999px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(34, 211, 238, 0.5);
+  background: rgba(2, 132, 199, 0.6);
+}
+
+/* Print styling for Phase 3C.2 Individual Assessment Report & PDF Export */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 8mm 8mm 8mm;
+  }
+
+  html, body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10pt !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  /* Hide interactive navigation, buttons, modals chrome, and decorative visual backgrounds */
+  header,
+  nav,
+  button,
+  .no-print,
+  .aurora-glass,
+  .aurora-glass-card,
+  canvas {
+    display: none !important;
+  }
+
+  /* Universal shadow, filter, and rasterization suppression for print viewing performance */
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* When assessment modal is active, suppress all landing page and background root elements */
+  body:has([role="dialog"]) #root > div > *:not([role="dialog"]) {
+    display: none !important;
+  }
+
+  /* Ensure printed tables and cards do not split awkwardly across pages */
+  tr, td, th {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-break-inside-avoid {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  /* Make sure container expands naturally without scrolling */
+  .custom-scrollbar {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
 }

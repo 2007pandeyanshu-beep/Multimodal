@@ -1,0 +1,36 @@
+BODYPARTS3D ANATOMICAL MODEL ATTRIBUTION & LICENSE NOTICE
+============================================================
+
+The 3D anatomical model file "coronary_heart_bp3d.glb" included in this directory
+is derived from the BodyParts3D database published by the Database Center for
+Life Science (DBCLS) and the National Bioscience Database Center (NBDC), Japan.
+
+Dataset: BodyParts3D Release 4.0 (99% decimation release)
+Source URL: https://dbarchive.biosciencedbc.jp/data/bodyparts3d/LATEST/
+Publisher: The Database Center for Life Science (DBCLS), Japan
+
+MANDATORY ATTRIBUTION:
+"BodyParts3D, © The Database Center for Life Science licensed under CC Attribution-Share Alike 2.1 Japan."
+
+LICENSE:
+Creative Commons Attribution-ShareAlike 2.1 Japan (CC BY-SA 2.1 JP)
+License Deed: https://creativecommons.org/licenses/by-sa/2.1/jp/deed.en
+Legal Code: https://creativecommons.org/licenses/by-sa/2.1/jp/legalcode
+
+SHARE-ALIKE NOTICE:
+If you alter, transform, or build upon this 3D model asset, you may distribute
+the resulting work only under the same or similar license to CC BY-SA 2.1 Japan.
+Note: This requirement applies specifically to the 3D anatomical mesh asset and its
+immediate derivatives, and does not extend to the proprietary machine-learning models,
+API services, or application code of CardioVision AI.
+
+ANATOMICAL CONCEPTS INCLUDED:
+1. Heart Myocardium (FMA:7088 / BP9305) - 22 segmented surface elements (FJ2417-FJ2439)
+2. Ascending Aorta Root (FMA:3736 / BP9287) - 1 element (FJ3413)
+3. Left Main Coronary Artery Stem (FMA:50040 / BP9549) - 1 element (FJ2737)
+4. Left Anterior Descending Artery (FMA:3862 / BP9548) - 18 elements (FJ2631-FJ2648)
+5. Left Circumflex Artery (FMA:3895 / BP9745) - 6 elements (FJ2649-FJ2654)
+6. Right Coronary Artery (FMA:50039 / BP9299) - 29 elements (FJ2667-FJ2723)
+
+All meshes are natively registered in the BodyParts3D anatomical reference coordinate system.
+Mesh assembly, translation centering, and WebGL scaling performed by CardioVision AI.
