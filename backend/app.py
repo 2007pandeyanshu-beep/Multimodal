@@ -21,7 +21,10 @@ from backend.config import (
 from backend.schemas import (
     PatientInput, PredictionResponse, TargetPrediction,
     BatchPredictionRequest, BatchPredictionResponse, BatchPatientResult,
-    HealthResponse, MetadataResponse
+    HealthResponse, MetadataResponse,
+    ExplainRequest, ExplainResponse, TargetExplanation, FeatureAttribution,
+    GlobalShapSummaryResponse, TargetGlobalShapResponse, GlobalFeatureImportanceItem,
+    EXPLAINABILITY_DISCLAIMER
 )
 from backend.model_loader import model_manager
 from ml.transformers import TARGET_CONFIG, FORBIDDEN_FEATURES
@@ -225,4 +228,117 @@ async def predict_batch(batch_request: BatchPredictionRequest):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An error occurred during batch inference processing."
+        )
+
+
+@app.post("/predict/explain", response_model=ExplainResponse, summary="Compute SHAP Feature Attributions for a Single Patient")
+async def explain_single(explain_request: ExplainRequest):
+    """
+    Accepts 54 clinical parameters and optional target filter.
+    Returns model-specific SHAP baseline, additive canonical feature attributions,
+    sum of contributions, reconstructed probability, and mathematical discrepancy
+    for each requested target (Cath, LAD, LCX, RCA).
+    """
+    if not model_manager.is_all_ready() or not model_manager.is_explainers_ready():
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Models or explainers are not initialized or failed to load. Check /health endpoint."
+        )
+
+    try:
+        patient_dict = explain_request.patient.model_dump(by_alias=True)
+        raw_explanations = model_manager.explain_single(
+            patient_dict=patient_dict,
+            targets=explain_request.targets
+        )
+
+        formatted_explanations = {
+            t: TargetExplanation(
+                target=item["target"],
+                predicted_probability=item["predicted_probability"],
+                predicted_class=item["predicted_class"],
+                predicted_label=item["predicted_label"],
+                base_value=item["base_value"],
+                attributions=[
+                    FeatureAttribution(
+                        feature_name=a["feature_name"],
+                        submitted_value=a["submitted_value"],
+                        contribution=a["contribution"]
+                    )
+                    for a in item["attributions"]
+                ],
+                sum_attributions=item["sum_attributions"],
+                reconstructed_probability=item["reconstructed_probability"],
+                additivity_discrepancy=item["additivity_discrepancy"],
+                output_space=item["output_space"],
+                disclaimer=item["disclaimer"]
+            )
+            for t, item in raw_explanations.items()
+        }
+
+        return ExplainResponse(
+            explanations=formatted_explanations,
+            disclaimer=EXPLAINABILITY_DISCLAIMER
+        )
+    except ValueError as ve:
+        logger.warning(f"Invalid explanation request argument: {str(ve)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(ve)
+        )
+    except Exception as e:
+        logger.error(f"Explanation execution error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An error occurred during explanation generation."
+        )
+
+
+@app.get(
+    "/explain/global",
+    response_model=GlobalShapSummaryResponse,
+    summary="Cohort-Level Mean Absolute SHAP Feature Importance"
+)
+async def get_global_shap():
+    """
+    Returns population-level mean absolute SHAP feature importance for all four
+    production Random Forest models (Cath, LAD, LCX, RCA) evaluated on the Tehran Heart Center cohort (N=303).
+    """
+    if not model_manager.is_all_ready() or not model_manager.is_explainers_ready():
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Models or explainers are not initialized or failed to load. Check /health endpoint."
+        )
+
+    try:
+        raw_summary = model_manager.get_global_shap_summary(top_n=10)
+        return GlobalShapSummaryResponse(
+            targets={
+                t: TargetGlobalShapResponse(
+                    target=item["target"],
+                    cohort_name=item["cohort_name"],
+                    sample_size=item["sample_size"],
+                    calculation_method=item["calculation_method"],
+                    output_space=item["output_space"],
+                    top_features=[
+                        GlobalFeatureImportanceItem(
+                            rank=f["rank"],
+                            feature_name=f["feature_name"],
+                            mean_absolute_shap=f["mean_absolute_shap"]
+                        )
+                        for f in item["top_features"]
+                    ]
+                )
+                for t, item in raw_summary["targets"].items()
+            },
+            cohort_name=raw_summary["cohort_name"],
+            sample_size=raw_summary["sample_size"],
+            calculation_method=raw_summary["calculation_method"],
+            disclaimer=raw_summary["disclaimer"]
+        )
+    except Exception as e:
+        logger.error(f"Global SHAP summary retrieval error: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An error occurred while generating global feature importance summaries."
         )

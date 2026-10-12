@@ -3,8 +3,8 @@ backend/schemas.py - Pydantic Request & Response Validation Schemas
 Multimodal AI Hackathon 2026 - Track A: Cardiovascular Risk Visualization & Prediction
 """
 
-from typing import Dict, List, Literal, Any, Union
-from pydantic import BaseModel, Field, ConfigDict
+from typing import Dict, List, Literal, Any, Union, Optional
+from pydantic import BaseModel, Field, ConfigDict, field_validator
 
 
 # Strict 54-feature patient input schema
@@ -126,3 +126,90 @@ class MetadataResponse(BaseModel):
     forbidden_features: List[str]
     model_type: str
     validation_methodology: str
+
+
+# Dedicated Explainability Schemas (Phase 4.1)
+EXPLAINABILITY_DISCLAIMER: str = (
+    "Research prototype output for Multimodal AI Hackathon 2026 (Track A). "
+    "SHAP feature attributions represent statistical model-behavior shifts (in probability units) "
+    "relative to the balanced tree prior for this single-center cohort (N=303). "
+    "They reflect correlational decision logic of the fitted Random Forest models, "
+    "NOT biological causality, clinical diagnosis, or treatment recommendations."
+)
+
+
+class FeatureAttribution(BaseModel):
+    feature_name: str = Field(..., description="Canonical clinical feature name")
+    submitted_value: Any = Field(..., description="Patient input value for this feature")
+    contribution: float = Field(..., description="Signed SHAP contribution in probability units (fraction)")
+
+
+class TargetExplanation(BaseModel):
+    target: str = Field(..., description="Target name ('Cath', 'LAD', 'LCX', 'RCA')")
+    predicted_probability: float = Field(..., ge=0.0, le=1.0, description="Predicted positive-class probability from the existing prediction pipeline")
+    predicted_class: int = Field(..., description="Binary predicted class (0 or 1) using existing model behavior")
+    predicted_label: str = Field(..., description="Human-readable class label (e.g. 'CAD' or 'Normal')")
+    base_value: float = Field(..., description="Model-specific SHAP baseline in probability units")
+    attributions: List[FeatureAttribution] = Field(..., description="Canonical feature attributions ordered by authoritative schema")
+    sum_attributions: float = Field(..., description="Sum of all 54 canonical feature attributions")
+    reconstructed_probability: float = Field(..., description="Reconstructed probability (base_value + sum_attributions)")
+    additivity_discrepancy: float = Field(..., description="Absolute additivity discrepancy abs(reconstructed_probability - predicted_probability)")
+    output_space: str = Field(default="probability", description="Explicit output space description (probability units [0.0, 1.0])")
+    disclaimer: str = Field(default=EXPLAINABILITY_DISCLAIMER, description="Scientific research disclaimer")
+
+
+class ExplainRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    patient: PatientInput = Field(..., description="Validated 54-feature patient input")
+    targets: Optional[List[str]] = Field(default=None, description="Optional list of target names; defaults to all four targets")
+
+    @field_validator("targets")
+    @classmethod
+    def validate_targets(cls, v: Optional[List[str]]) -> Optional[List[str]]:
+        if v is None:
+            return v
+        if len(v) == 0:
+            raise ValueError("Target list cannot be empty. Specify at least one valid target or omit field.")
+        valid_targets = {"Cath", "LAD", "LCX", "RCA"}
+        seen = set()
+        for t in v:
+            if t not in valid_targets:
+                raise ValueError(f"Invalid target '{t}'. Allowed targets: {sorted(list(valid_targets))}.")
+            if t in seen:
+                raise ValueError(f"Duplicate target '{t}' found in targets list. Targets must be unique.")
+            seen.add(t)
+        return v
+
+
+class ExplainResponse(BaseModel):
+    explanations: Dict[str, TargetExplanation] = Field(..., description="Map of target explanations for requested targets")
+    disclaimer: str = Field(default=EXPLAINABILITY_DISCLAIMER, description="Scientific research prototype disclaimer")
+
+
+class GlobalFeatureImportanceItem(BaseModel):
+    rank: int = Field(..., ge=1, le=54, description="Importance rank (1-indexed)")
+    feature_name: str = Field(..., description="Canonical clinical feature name")
+    mean_absolute_shap: float = Field(..., ge=0.0, description="Mean absolute SHAP contribution in probability units (fraction)")
+
+
+class TargetGlobalShapResponse(BaseModel):
+    target: str = Field(..., description="Target vessel / outcome ('Cath', 'LAD', 'LCX', 'RCA')")
+    cohort_name: str = Field(default="Tehran Heart Center Cohort", description="Cohort study name")
+    sample_size: int = Field(default=303, description="Cohort patient count used for SHAP expectation")
+    calculation_method: str = Field(
+        default="mean(abs(canonical_SHAP_contribution)) across cohort",
+        description="Mathematical attribution method"
+    )
+    output_space: str = Field(default="probability", description="Output space of model predictions and SHAP values")
+    top_features: List[GlobalFeatureImportanceItem] = Field(..., description="Top canonical features ranked by mean |SHAP| descending")
+
+
+class GlobalShapSummaryResponse(BaseModel):
+    targets: Dict[str, TargetGlobalShapResponse] = Field(..., description="Global SHAP summaries keyed by target name")
+    cohort_name: str = Field(default="Tehran Heart Center Cohort", description="Cohort study name")
+    sample_size: int = Field(default=303, description="Cohort patient count")
+    calculation_method: str = Field(
+        default="TreeSHAP path-dependent perturbation with canonical one-hot feature aggregation",
+        description="SHAP calculation method"
+    )
+    disclaimer: str = Field(default=EXPLAINABILITY_DISCLAIMER, description="Scientific research prototype disclaimer")
