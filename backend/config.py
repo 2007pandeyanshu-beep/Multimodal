@@ -18,6 +18,13 @@ APP_NAME = "Cardiovascular Risk Visualization & Prediction API"
 APP_VERSION = "1.0.0"
 MAX_BATCH_SIZE = int(os.getenv("MAX_BATCH_SIZE", "50"))
 
+# PDF & OCR Processing Parameters
+MAX_PDF_SIZE_BYTES = int(os.getenv("MAX_PDF_SIZE_BYTES", str(15 * 1024 * 1024)))  # 15 MB
+MAX_PDF_PAGES = int(os.getenv("MAX_PDF_PAGES", "20"))
+OCR_MIN_CHARS_THRESHOLD = int(os.getenv("OCR_MIN_CHARS_THRESHOLD", "40"))
+OCR_DPI = int(os.getenv("OCR_DPI", "200"))
+TESSERACT_CMD = os.getenv("TESSERACT_CMD", r"C:\Program Files\Tesseract-OCR\tesseract.exe")
+
 # Restrictive development CORS defaults, overridable via environment variable
 default_origins = [
     "http://localhost:5173",

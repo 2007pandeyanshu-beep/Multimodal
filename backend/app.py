@@ -244,3 +244,7 @@ async def predict_batch(batch_request: BatchPredictionRequest):
 # Include isolated experimental endpoints
 from backend.experimental_routes import router as experimental_router
 app.include_router(experimental_router)
+
+# Include isolated PDF report ingestion & clinical mapping endpoints
+from backend.pdf.routes import router as pdf_router
+app.include_router(pdf_router)
