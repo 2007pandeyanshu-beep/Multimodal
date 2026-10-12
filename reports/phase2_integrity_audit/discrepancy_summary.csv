@@ -1,0 +1,37 @@
+target,model,metric,pooled_oof_value,fold_mean_value,difference,cause
+Cath,RandomForest,ROC-AUC,0.9144,0.9195,-0.0051,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+Cath,RandomForest,Precision,0.9343,0.9349,-0.0005,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+Cath,RandomForest,Sensitivity,0.8565,0.8565,0.0,Ratio of sums differs from mean of ratios across folds.
+Cath,LogisticRegression,ROC-AUC,0.9256,0.9279,-0.0022,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+Cath,LogisticRegression,Precision,0.9204,0.9225,-0.0021,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+Cath,LogisticRegression,Sensitivity,0.8565,0.8562,0.0002,Ratio of sums differs from mean of ratios across folds.
+Cath,GradientBoosting,ROC-AUC,0.9025,0.9069,-0.0045,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+Cath,GradientBoosting,Precision,0.8652,0.8676,-0.0024,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+Cath,GradientBoosting,Sensitivity,0.9213,0.9212,0.0001,Ratio of sums differs from mean of ratios across folds.
+LAD,RandomForest,ROC-AUC,0.8352,0.8383,-0.0031,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+LAD,RandomForest,Precision,0.8011,0.8027,-0.0017,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+LAD,RandomForest,Sensitivity,0.8418,0.8424,-0.0006,Ratio of sums differs from mean of ratios across folds.
+LAD,LogisticRegression,ROC-AUC,0.8116,0.8163,-0.0047,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+LAD,LogisticRegression,Precision,0.7927,0.7932,-0.0005,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+LAD,LogisticRegression,Sensitivity,0.7345,0.7346,-0.0002,Ratio of sums differs from mean of ratios across folds.
+LAD,GradientBoosting,ROC-AUC,0.8376,0.8446,-0.007,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+LAD,GradientBoosting,Precision,0.7914,0.7941,-0.0027,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+LAD,GradientBoosting,Sensitivity,0.8362,0.8365,-0.0004,Ratio of sums differs from mean of ratios across folds.
+LCX,RandomForest,ROC-AUC,0.713,0.7199,-0.0069,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+LCX,RandomForest,Precision,0.5368,0.5469,-0.0101,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+LCX,RandomForest,Sensitivity,0.6134,0.6138,-0.0003,Ratio of sums differs from mean of ratios across folds.
+LCX,LogisticRegression,ROC-AUC,0.6562,0.6544,0.0018,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+LCX,LogisticRegression,Precision,0.5109,0.5187,-0.0077,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+LCX,LogisticRegression,Sensitivity,0.5882,0.588,0.0002,Ratio of sums differs from mean of ratios across folds.
+LCX,GradientBoosting,ROC-AUC,0.7162,0.7154,0.0008,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+LCX,GradientBoosting,Precision,0.6,0.6055,-0.0055,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+LCX,GradientBoosting,Sensitivity,0.5042,0.504,0.0002,Ratio of sums differs from mean of ratios across folds.
+RCA,RandomForest,ROC-AUC,0.7313,0.734,-0.0026,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+RCA,RandomForest,Precision,0.5538,0.5563,-0.0025,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+RCA,RandomForest,Sensitivity,0.6316,0.6308,0.0007,Ratio of sums differs from mean of ratios across folds.
+RCA,LogisticRegression,ROC-AUC,0.6985,0.7059,-0.0073,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+RCA,LogisticRegression,Precision,0.5299,0.5377,-0.0078,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+RCA,LogisticRegression,Sensitivity,0.6228,0.6229,-0.0001,Ratio of sums differs from mean of ratios across folds.
+RCA,GradientBoosting,ROC-AUC,0.689,0.6933,-0.0043,"Pooled OOF ranks all 303 validation predictions globally, subject to minor inter-fold threshold shifts; Fold-Mean averages within-fold rank statistics."
+RCA,GradientBoosting,Precision,0.5765,0.5944,-0.0179,Ratio of sums (Pooled: sum(TP)/sum(TP+FP)) differs mathematically from mean of ratios (Fold-Mean: mean(TP_k/(TP_k+FP_k))) due to varying fold sizes.
+RCA,GradientBoosting,Sensitivity,0.4298,0.4292,0.0006,Ratio of sums differs from mean of ratios across folds.
