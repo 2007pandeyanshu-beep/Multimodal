@@ -1,7 +1,7 @@
 # Second Feature-Engineering Experiment Report: Repeated Cross-Validation of Augmented_23
 
 **Multimodal AI Hackathon 2026 — Track A: Cardiovascular Risk Visualization & Prediction**  
-**Date:** October 13, 2026  
+**Date:** October 14, 2026  
 **Isolation Directory:** `experiments/feature_selection/repeated_cv/`  
 
 > [!IMPORTANT]
@@ -17,10 +17,10 @@ The objective of this second experiment is to determine whether adding 5 consist
 3. Prove stability under **repeated cross-validation (5 repetitions of 5-fold CV = 25 outer test folds per model)** across both production Random Forest and experimental Soft Voting/Stacking architectures.
 
 ### Key Empirical Takeaways (25 Outer Test Folds):
-* **RCA Recovery Achieved:** `Augmented_23` successfully recovers RCA discrimination under Random Forest, raising ROC-AUC from **0.6957 ± 0.050** (`Clinical_18`) back up to **0.7289 ± 0.053** (matching `Baseline_54` at 0.7340 ± 0.059), and PR-AUC from **0.5408** to **0.6133**.
-* **Under Stacking Classifier for RCA:** `Augmented_23` achieves an outstanding ROC-AUC of **0.7410 ± 0.054** and Sensitivity of **69.8%**, outperforming the 54-feature Random Forest baseline!
-* **Cath & LAD Equivalence:** On `Cath`, `Augmented_23` achieves ROC-AUC of **0.9255 ± 0.048** (RF) and **0.9332 ± 0.038** (SoftVoting), outperforming Baseline_54 (0.9195). On `LAD`, `Augmented_23` matches Baseline_54 (0.8387 vs 0.8383).
-* **LCX Remains Strong:** On `LCX`, `Augmented_23` achieves ROC-AUC of **0.7303 ± 0.081** (RF) and **0.7259 ± 0.076** (Stacking), maintaining superiority over Baseline_54 (0.7199).
+* **RCA Recovery Achieved:** `Augmented_23` successfully recovers RCA discrimination under Random Forest, raising ROC-AUC from **0.6948 ± 0.063** (`Clinical_18`) back up to **0.7263 ± 0.065** (matching `Baseline_54` at 0.7272 ± 0.073), and PR-AUC from **0.5443** to **0.6008**.
+* **Under Stacking Classifier for RCA:** `Augmented_23` achieves an outstanding ROC-AUC of **0.7463 ± 0.067** and Sensitivity of **67.5%**, outperforming the 54-feature Random Forest baseline!
+* **Cath & LAD Equivalence:** On `Cath`, `Augmented_23` achieves ROC-AUC of **0.9200 ± 0.041** (RF) and **0.9245 ± 0.037** (SoftVoting), comparable to Baseline_54 (0.9176 / 0.9249). On `LAD`, `Augmented_23` matches Baseline_54 (0.8418 vs 0.8421).
+* **LCX Remains Strong:** On `LCX`, `Augmented_23` achieves ROC-AUC of **0.7370 ± 0.071** (RF) and **0.7407 ± 0.068** (Stacking), maintaining superiority over Baseline_54 (0.7349).
 
 ---
 
@@ -102,31 +102,31 @@ The objective of this second experiment is to determine whether adding 5 consist
 ## 5. Detailed Clinical Analysis by Artery
 
 ### 5.1 Overall CAD (`Cath`)
-* **Baseline_54 (RF):** ROC-AUC 0.9195 ± 0.044, Sensitivity 85.6%, F1 0.8931, Brier 0.1220.
-* **Clinical_18 (RF):** ROC-AUC 0.9216 ± 0.057, Sensitivity 85.6%, F1 0.8851, Brier 0.1155.
-* **Augmented_23 (RF):** ROC-AUC **0.9255 ± 0.048**, Sensitivity **86.1%**, F1 **0.8942**, Brier **0.1140**.
-* **Augmented_23 (SoftVoting):** ROC-AUC **0.9332 ± 0.038**, Sensitivity **91.9%**, F1 **0.9180**, Brier **0.0998**.
-* **Clinical Takeaway:** Augmented_23 delivers superior discrimination and calibration over Baseline_54 on both architectures, reducing missed CAD cases while eliminating 31 redundant clinical measures.
+* **Baseline_54 (RF):** ROC-AUC 0.9176 ± 0.038, Sensitivity 86.0%, F1 0.8902, Brier 0.1228.
+* **Clinical_18 (RF):** ROC-AUC 0.9207 ± 0.043, Sensitivity 86.4%, F1 0.8934, Brier 0.1140.
+* **Augmented_23 (RF):** ROC-AUC **0.9200 ± 0.041**, Sensitivity **86.1%**, F1 **0.8911**, Brier **0.1156**.
+* **Augmented_23 (SoftVoting):** ROC-AUC **0.9245 ± 0.037**, Sensitivity **89.8%**, F1 **0.9018**, Brier **0.1039**.
+* **Clinical Takeaway:** Augmented_23 delivers comparable or superior discrimination and calibration over Baseline_54 on both architectures, reducing missed CAD cases while eliminating 31 redundant clinical measures.
 
 ### 5.2 LAD Stenosis (`LAD`)
-* **Baseline_54 (RF):** ROC-AUC 0.8383 ± 0.076, Sensitivity 84.2%, Specificity 70.6%, F1 0.8216, Brier 0.1692.
-* **Clinical_18 (RF):** ROC-AUC 0.8491 ± 0.073, Sensitivity 82.0%, Specificity 75.4%, F1 0.8219, Brier 0.1618.
-* **Augmented_23 (RF):** ROC-AUC **0.8387 ± 0.075**, Sensitivity **83.6%**, Specificity **72.1%**, F1 **0.8225**, Brier **0.1652**.
-* **Clinical Takeaway:** Augmented_23 preserves balanced anterior wall sensitivity (83.6% vs 84.2%) with improved specificity (72.1% vs 70.6%) and lower Brier calibration error than Baseline_54.
+* **Baseline_54 (RF):** ROC-AUC 0.8421 ± 0.062, Sensitivity 82.9%, Specificity 69.2%, F1 0.8074, Brier 0.1698.
+* **Clinical_18 (RF):** ROC-AUC 0.8360 ± 0.057, Sensitivity 80.7%, Specificity 71.3%, F1 0.8009, Brier 0.1648.
+* **Augmented_23 (RF):** ROC-AUC **0.8418 ± 0.060**, Sensitivity **81.7%**, Specificity **71.5%**, F1 **0.8076**, Brier **0.1643**.
+* **Clinical Takeaway:** Augmented_23 preserves balanced anterior wall sensitivity (81.7% vs 82.9%) with improved specificity (71.5% vs 69.2%) and lower Brier calibration error than Baseline_54.
 
 ### 5.3 LCX Stenosis (`LCX`)
-* **Baseline_54 (RF):** ROC-AUC 0.7199 ± 0.084, Sensitivity 61.4%, F1 0.5757, Brier 0.2157.
-* **Clinical_18 (RF):** ROC-AUC 0.7321 ± 0.105, Sensitivity 68.9%, F1 0.6206, Brier 0.2080.
-* **Augmented_23 (RF):** ROC-AUC **0.7303 ± 0.081**, Sensitivity **67.2%**, F1 **0.6110**, Brier **0.2095**.
-* **Augmented_23 (Stacking):** ROC-AUC **0.7259 ± 0.076**, Sensitivity **70.1%**, F1 **0.6275**, Brier **0.2185**.
-* **Clinical Takeaway:** Both reduced feature sets significantly outperform Baseline_54 on LCX. By discarding noisy demographic/lifestyle attributes, sensitivity jumps from 61.4% to 67-70%, drastically cutting missed circumflex stenoses.
+* **Baseline_54 (RF):** ROC-AUC 0.7349 ± 0.064, Sensitivity 63.7%, F1 0.6027, Brier 0.2109.
+* **Clinical_18 (RF):** ROC-AUC 0.7458 ± 0.074, Sensitivity 68.6%, F1 0.6291, Brier 0.2047.
+* **Augmented_23 (RF):** ROC-AUC **0.7370 ± 0.071**, Sensitivity **67.2%**, F1 **0.6180**, Brier **0.2084**.
+* **Augmented_23 (Stacking):** ROC-AUC **0.7407 ± 0.068**, Sensitivity **68.0%**, F1 **0.6246**, Brier **0.2118**.
+* **Clinical Takeaway:** Both reduced feature sets outperform Baseline_54 on LCX. By discarding noisy demographic/lifestyle attributes, sensitivity jumps from 63.7% to 67-68%, cutting missed circumflex stenoses.
 
 ### 5.4 RCA Stenosis (`RCA`) — Key Recovery Finding
-* **Baseline_54 (RF):** ROC-AUC 0.7340 ± 0.059, PR-AUC 0.6220, Sensitivity 63.1%, Specificity 69.3%, F1 0.5893, Brier 0.2087.
-* **Clinical_18 (RF):** ROC-AUC 0.6957 ± 0.050, PR-AUC 0.5408, Sensitivity 64.1%, Specificity 65.1%, F1 0.5757, Brier 0.2183.
-* **Augmented_23 (RF):** ROC-AUC **0.7289 ± 0.053**, PR-AUC **0.6133**, Sensitivity **64.7%**, Specificity **67.8%**, F1 **0.5954**, Brier **0.2102**.
-* **Augmented_23 (Stacking):** ROC-AUC **0.7410 ± 0.054**, PR-AUC **0.6165**, Sensitivity **69.8%**, Specificity **68.1%**, F1 **0.6212**, Brier **0.2125**.
-* **Clinical Takeaway:** The addition of `ESR`, `BUN`, `Neut`, `Dyspnea`, and `Poor R Progression` successfully **recovers the RCA discriminative drop**. Under Stacking, Augmented_23 delivers the **highest overall RCA performance** across the entire project (ROC-AUC 0.7410, Sensitivity 69.8%, F1 0.6212)!
+* **Baseline_54 (RF):** ROC-AUC 0.7272 ± 0.073, PR-AUC 0.6115, Sensitivity 63.0%, Specificity 68.8%, F1 0.5857, Brier 0.2113.
+* **Clinical_18 (RF):** ROC-AUC 0.6948 ± 0.063, PR-AUC 0.5443, Sensitivity 61.9%, Specificity 64.7%, F1 0.5606, Brier 0.2178.
+* **Augmented_23 (RF):** ROC-AUC **0.7263 ± 0.065**, PR-AUC **0.6008**, Sensitivity **63.9%**, Specificity **67.8%**, F1 **0.5876**, Brier **0.2101**.
+* **Augmented_23 (Stacking):** ROC-AUC **0.7463 ± 0.067**, PR-AUC **0.6317**, Sensitivity **67.5%**, Specificity **65.5%**, F1 **0.5986**, Brier **0.2091**.
+* **Clinical Takeaway:** The addition of `ESR`, `BUN`, `Neut`, `Dyspnea`, and `Poor R Progression` successfully **recovers the RCA discriminative drop**. Under Stacking, Augmented_23 delivers the highest overall RCA performance in cross-validation (ROC-AUC 0.7463, Sensitivity 67.5%, F1 0.5986).
 
 ---
 

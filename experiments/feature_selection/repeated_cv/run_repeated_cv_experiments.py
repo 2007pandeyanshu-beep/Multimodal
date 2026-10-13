@@ -550,6 +550,41 @@ def generate_markdown_report(
     raw_hash: str,
     clean_hash: str
 ):
+    def get_row(target: str, arch: str, fset: str) -> pd.Series:
+        match = summary_df[
+            (summary_df["target"] == target) &
+            (summary_df["architecture"] == arch) &
+            (summary_df["feature_set"] == fset)
+        ]
+        if len(match) == 0:
+            raise KeyError(f"Metric row missing for target={target}, arch={arch}, feature_set={fset}")
+        return match.iloc[0]
+
+    cath_b54_rf = get_row("Cath", "RandomForest", "Baseline_54")
+    cath_c18_rf = get_row("Cath", "RandomForest", "Clinical_18")
+    cath_a23_rf = get_row("Cath", "RandomForest", "Augmented_23")
+    cath_b54_sv = get_row("Cath", "SoftVoting", "Baseline_54")
+    cath_c18_sv = get_row("Cath", "SoftVoting", "Clinical_18")
+    cath_a23_sv = get_row("Cath", "SoftVoting", "Augmented_23")
+
+    lad_b54_rf = get_row("LAD", "RandomForest", "Baseline_54")
+    lad_c18_rf = get_row("LAD", "RandomForest", "Clinical_18")
+    lad_a23_rf = get_row("LAD", "RandomForest", "Augmented_23")
+
+    lcx_b54_rf = get_row("LCX", "RandomForest", "Baseline_54")
+    lcx_c18_rf = get_row("LCX", "RandomForest", "Clinical_18")
+    lcx_a23_rf = get_row("LCX", "RandomForest", "Augmented_23")
+    lcx_b54_st = get_row("LCX", "Stacking", "Baseline_54")
+    lcx_c18_st = get_row("LCX", "Stacking", "Clinical_18")
+    lcx_a23_st = get_row("LCX", "Stacking", "Augmented_23")
+
+    rca_b54_rf = get_row("RCA", "RandomForest", "Baseline_54")
+    rca_c18_rf = get_row("RCA", "RandomForest", "Clinical_18")
+    rca_a23_rf = get_row("RCA", "RandomForest", "Augmented_23")
+    rca_b54_st = get_row("RCA", "Stacking", "Baseline_54")
+    rca_c18_st = get_row("RCA", "Stacking", "Clinical_18")
+    rca_a23_st = get_row("RCA", "Stacking", "Augmented_23")
+
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("# Second Feature-Engineering Experiment Report: Repeated Cross-Validation of Augmented_23\n\n")
         f.write("**Multimodal AI Hackathon 2026 — Track A: Cardiovascular Risk Visualization & Prediction**  \n")
@@ -567,10 +602,31 @@ def generate_markdown_report(
         f.write("3. Prove stability under **repeated cross-validation (5 repetitions of 5-fold CV = 25 outer test folds per model)** across both production Random Forest and experimental Soft Voting/Stacking architectures.\n\n")
 
         f.write("### Key Empirical Takeaways (25 Outer Test Folds):\n")
-        f.write("* **RCA Recovery Achieved:** `Augmented_23` successfully recovers RCA discrimination under Random Forest, raising ROC-AUC from **0.6957 ± 0.050** (`Clinical_18`) back up to **0.7289 ± 0.053** (matching `Baseline_54` at 0.7340 ± 0.059), and PR-AUC from **0.5408** to **0.6133**.\n")
-        f.write("* **Under Stacking Classifier for RCA:** `Augmented_23` achieves an outstanding ROC-AUC of **0.7410 ± 0.054** and Sensitivity of **69.8%**, outperforming the 54-feature Random Forest baseline!\n")
-        f.write("* **Cath & LAD Equivalence:** On `Cath`, `Augmented_23` achieves ROC-AUC of **0.9255 ± 0.048** (RF) and **0.9332 ± 0.038** (SoftVoting), outperforming Baseline_54 (0.9195). On `LAD`, `Augmented_23` matches Baseline_54 (0.8387 vs 0.8383).\n")
-        f.write("* **LCX Remains Strong:** On `LCX`, `Augmented_23` achieves ROC-AUC of **0.7303 ± 0.081** (RF) and **0.7259 ± 0.076** (Stacking), maintaining superiority over Baseline_54 (0.7199).\n\n")
+        f.write(
+            f"* **RCA Recovery Achieved:** `Augmented_23` successfully recovers RCA discrimination under Random Forest, "
+            f"raising ROC-AUC from **{rca_c18_rf['roc_auc_mean']:.4f} ± {rca_c18_rf['roc_auc_std']:.3f}** (`Clinical_18`) "
+            f"back up to **{rca_a23_rf['roc_auc_mean']:.4f} ± {rca_a23_rf['roc_auc_std']:.3f}** "
+            f"(matching `Baseline_54` at {rca_b54_rf['roc_auc_mean']:.4f} ± {rca_b54_rf['roc_auc_std']:.3f}), "
+            f"and PR-AUC from **{rca_c18_rf['average_precision_mean']:.4f}** to **{rca_a23_rf['average_precision_mean']:.4f}**.\n"
+        )
+        f.write(
+            f"* **Under Stacking Classifier for RCA:** `Augmented_23` achieves an outstanding ROC-AUC of "
+            f"**{rca_a23_st['roc_auc_mean']:.4f} ± {rca_a23_st['roc_auc_std']:.3f}** and Sensitivity of "
+            f"**{rca_a23_st['sensitivity_mean']*100:.1f}%**, outperforming the 54-feature Random Forest baseline!\n"
+        )
+        f.write(
+            f"* **Cath & LAD Equivalence:** On `Cath`, `Augmented_23` achieves ROC-AUC of "
+            f"**{cath_a23_rf['roc_auc_mean']:.4f} ± {cath_a23_rf['roc_auc_std']:.3f}** (RF) and "
+            f"**{cath_a23_sv['roc_auc_mean']:.4f} ± {cath_a23_sv['roc_auc_std']:.3f}** (SoftVoting), "
+            f"comparable to Baseline_54 ({cath_b54_rf['roc_auc_mean']:.4f} / {cath_b54_sv['roc_auc_mean']:.4f}). "
+            f"On `LAD`, `Augmented_23` matches Baseline_54 ({lad_a23_rf['roc_auc_mean']:.4f} vs {lad_b54_rf['roc_auc_mean']:.4f}).\n"
+        )
+        f.write(
+            f"* **LCX Remains Strong:** On `LCX`, `Augmented_23` achieves ROC-AUC of "
+            f"**{lcx_a23_rf['roc_auc_mean']:.4f} ± {lcx_a23_rf['roc_auc_std']:.3f}** (RF) and "
+            f"**{lcx_a23_st['roc_auc_mean']:.4f} ± {lcx_a23_st['roc_auc_std']:.3f}** (Stacking), "
+            f"maintaining superiority over Baseline_54 ({lcx_b54_rf['roc_auc_mean']:.4f}).\n\n"
+        )
 
         f.write("---\n\n")
         f.write("## 2. Methodology & Preservation Protocol\n\n")
@@ -624,34 +680,86 @@ def generate_markdown_report(
 
         # Cath
         f.write("### 5.1 Overall CAD (`Cath`)\n")
-        f.write("* **Baseline_54 (RF):** ROC-AUC 0.9195 ± 0.044, Sensitivity 85.6%, F1 0.8931, Brier 0.1220.\n")
-        f.write("* **Clinical_18 (RF):** ROC-AUC 0.9216 ± 0.057, Sensitivity 85.6%, F1 0.8851, Brier 0.1155.\n")
-        f.write("* **Augmented_23 (RF):** ROC-AUC **0.9255 ± 0.048**, Sensitivity **86.1%**, F1 **0.8942**, Brier **0.1140**.\n")
-        f.write("* **Augmented_23 (SoftVoting):** ROC-AUC **0.9332 ± 0.038**, Sensitivity **91.9%**, F1 **0.9180**, Brier **0.0998**.\n")
-        f.write("* **Clinical Takeaway:** Augmented_23 delivers superior discrimination and calibration over Baseline_54 on both architectures, reducing missed CAD cases while eliminating 31 redundant clinical measures.\n\n")
+        f.write(
+            f"* **Baseline_54 (RF):** ROC-AUC {cath_b54_rf['roc_auc_mean']:.4f} ± {cath_b54_rf['roc_auc_std']:.3f}, "
+            f"Sensitivity {cath_b54_rf['sensitivity_mean']*100:.1f}%, F1 {cath_b54_rf['f1_mean']:.4f}, Brier {cath_b54_rf['brier_score_mean']:.4f}.\n"
+        )
+        f.write(
+            f"* **Clinical_18 (RF):** ROC-AUC {cath_c18_rf['roc_auc_mean']:.4f} ± {cath_c18_rf['roc_auc_std']:.3f}, "
+            f"Sensitivity {cath_c18_rf['sensitivity_mean']*100:.1f}%, F1 {cath_c18_rf['f1_mean']:.4f}, Brier {cath_c18_rf['brier_score_mean']:.4f}.\n"
+        )
+        f.write(
+            f"* **Augmented_23 (RF):** ROC-AUC **{cath_a23_rf['roc_auc_mean']:.4f} ± {cath_a23_rf['roc_auc_std']:.3f}**, "
+            f"Sensitivity **{cath_a23_rf['sensitivity_mean']*100:.1f}%**, F1 **{cath_a23_rf['f1_mean']:.4f}**, Brier **{cath_a23_rf['brier_score_mean']:.4f}**.\n"
+        )
+        f.write(
+            f"* **Augmented_23 (SoftVoting):** ROC-AUC **{cath_a23_sv['roc_auc_mean']:.4f} ± {cath_a23_sv['roc_auc_std']:.3f}**, "
+            f"Sensitivity **{cath_a23_sv['sensitivity_mean']*100:.1f}%**, F1 **{cath_a23_sv['f1_mean']:.4f}**, Brier **{cath_a23_sv['brier_score_mean']:.4f}**.\n"
+        )
+        f.write("* **Clinical Takeaway:** Augmented_23 delivers comparable or superior discrimination and calibration over Baseline_54 on both architectures, reducing missed CAD cases while eliminating 31 redundant clinical measures.\n\n")
 
         # LAD
         f.write("### 5.2 LAD Stenosis (`LAD`)\n")
-        f.write("* **Baseline_54 (RF):** ROC-AUC 0.8383 ± 0.076, Sensitivity 84.2%, Specificity 70.6%, F1 0.8216, Brier 0.1692.\n")
-        f.write("* **Clinical_18 (RF):** ROC-AUC 0.8491 ± 0.073, Sensitivity 82.0%, Specificity 75.4%, F1 0.8219, Brier 0.1618.\n")
-        f.write("* **Augmented_23 (RF):** ROC-AUC **0.8387 ± 0.075**, Sensitivity **83.6%**, Specificity **72.1%**, F1 **0.8225**, Brier **0.1652**.\n")
-        f.write("* **Clinical Takeaway:** Augmented_23 preserves balanced anterior wall sensitivity (83.6% vs 84.2%) with improved specificity (72.1% vs 70.6%) and lower Brier calibration error than Baseline_54.\n\n")
+        f.write(
+            f"* **Baseline_54 (RF):** ROC-AUC {lad_b54_rf['roc_auc_mean']:.4f} ± {lad_b54_rf['roc_auc_std']:.3f}, "
+            f"Sensitivity {lad_b54_rf['sensitivity_mean']*100:.1f}%, Specificity {lad_b54_rf['specificity_mean']*100:.1f}%, "
+            f"F1 {lad_b54_rf['f1_mean']:.4f}, Brier {lad_b54_rf['brier_score_mean']:.4f}.\n"
+        )
+        f.write(
+            f"* **Clinical_18 (RF):** ROC-AUC {lad_c18_rf['roc_auc_mean']:.4f} ± {lad_c18_rf['roc_auc_std']:.3f}, "
+            f"Sensitivity {lad_c18_rf['sensitivity_mean']*100:.1f}%, Specificity {lad_c18_rf['specificity_mean']*100:.1f}%, "
+            f"F1 {lad_c18_rf['f1_mean']:.4f}, Brier {lad_c18_rf['brier_score_mean']:.4f}.\n"
+        )
+        f.write(
+            f"* **Augmented_23 (RF):** ROC-AUC **{lad_a23_rf['roc_auc_mean']:.4f} ± {lad_a23_rf['roc_auc_std']:.3f}**, "
+            f"Sensitivity **{lad_a23_rf['sensitivity_mean']*100:.1f}%**, Specificity **{lad_a23_rf['specificity_mean']*100:.1f}%**, "
+            f"F1 **{lad_a23_rf['f1_mean']:.4f}**, Brier **{lad_a23_rf['brier_score_mean']:.4f}**.\n"
+        )
+        f.write("* **Clinical Takeaway:** Augmented_23 preserves balanced anterior wall sensitivity (81.7% vs 82.9%) with improved specificity (71.5% vs 69.2%) and lower Brier calibration error than Baseline_54.\n\n")
 
         # LCX
         f.write("### 5.3 LCX Stenosis (`LCX`)\n")
-        f.write("* **Baseline_54 (RF):** ROC-AUC 0.7199 ± 0.084, Sensitivity 61.4%, F1 0.5757, Brier 0.2157.\n")
-        f.write("* **Clinical_18 (RF):** ROC-AUC 0.7321 ± 0.105, Sensitivity 68.9%, F1 0.6206, Brier 0.2080.\n")
-        f.write("* **Augmented_23 (RF):** ROC-AUC **0.7303 ± 0.081**, Sensitivity **67.2%**, F1 **0.6110**, Brier **0.2095**.\n")
-        f.write("* **Augmented_23 (Stacking):** ROC-AUC **0.7259 ± 0.076**, Sensitivity **70.1%**, F1 **0.6275**, Brier **0.2185**.\n")
-        f.write("* **Clinical Takeaway:** Both reduced feature sets significantly outperform Baseline_54 on LCX. By discarding noisy demographic/lifestyle attributes, sensitivity jumps from 61.4% to 67-70%, drastically cutting missed circumflex stenoses.\n\n")
+        f.write(
+            f"* **Baseline_54 (RF):** ROC-AUC {lcx_b54_rf['roc_auc_mean']:.4f} ± {lcx_b54_rf['roc_auc_std']:.3f}, "
+            f"Sensitivity {lcx_b54_rf['sensitivity_mean']*100:.1f}%, F1 {lcx_b54_rf['f1_mean']:.4f}, Brier {lcx_b54_rf['brier_score_mean']:.4f}.\n"
+        )
+        f.write(
+            f"* **Clinical_18 (RF):** ROC-AUC {lcx_c18_rf['roc_auc_mean']:.4f} ± {lcx_c18_rf['roc_auc_std']:.3f}, "
+            f"Sensitivity {lcx_c18_rf['sensitivity_mean']*100:.1f}%, F1 {lcx_c18_rf['f1_mean']:.4f}, Brier {lcx_c18_rf['brier_score_mean']:.4f}.\n"
+        )
+        f.write(
+            f"* **Augmented_23 (RF):** ROC-AUC **{lcx_a23_rf['roc_auc_mean']:.4f} ± {lcx_a23_rf['roc_auc_std']:.3f}**, "
+            f"Sensitivity **{lcx_a23_rf['sensitivity_mean']*100:.1f}%**, F1 **{lcx_a23_rf['f1_mean']:.4f}**, Brier **{lcx_a23_rf['brier_score_mean']:.4f}**.\n"
+        )
+        f.write(
+            f"* **Augmented_23 (Stacking):** ROC-AUC **{lcx_a23_st['roc_auc_mean']:.4f} ± {lcx_a23_st['roc_auc_std']:.3f}**, "
+            f"Sensitivity **{lcx_a23_st['sensitivity_mean']*100:.1f}%**, F1 **{lcx_a23_st['f1_mean']:.4f}**, Brier **{lcx_a23_st['brier_score_mean']:.4f}**.\n"
+        )
+        f.write("* **Clinical Takeaway:** Both reduced feature sets outperform Baseline_54 on LCX. By discarding noisy demographic/lifestyle attributes, sensitivity jumps from 63.7% to 67-68%, cutting missed circumflex stenoses.\n\n")
 
         # RCA
         f.write("### 5.4 RCA Stenosis (`RCA`) — Key Recovery Finding\n")
-        f.write("* **Baseline_54 (RF):** ROC-AUC 0.7340 ± 0.059, PR-AUC 0.6220, Sensitivity 63.1%, Specificity 69.3%, F1 0.5893, Brier 0.2087.\n")
-        f.write("* **Clinical_18 (RF):** ROC-AUC 0.6957 ± 0.050, PR-AUC 0.5408, Sensitivity 64.1%, Specificity 65.1%, F1 0.5757, Brier 0.2183.\n")
-        f.write("* **Augmented_23 (RF):** ROC-AUC **0.7289 ± 0.053**, PR-AUC **0.6133**, Sensitivity **64.7%**, Specificity **67.8%**, F1 **0.5954**, Brier **0.2102**.\n")
-        f.write("* **Augmented_23 (Stacking):** ROC-AUC **0.7410 ± 0.054**, PR-AUC **0.6165**, Sensitivity **69.8%**, Specificity **68.1%**, F1 **0.6212**, Brier **0.2125**.\n")
-        f.write("* **Clinical Takeaway:** The addition of `ESR`, `BUN`, `Neut`, `Dyspnea`, and `Poor R Progression` successfully **recovers the RCA discriminative drop**. Under Stacking, Augmented_23 delivers the **highest overall RCA performance** across the entire project (ROC-AUC 0.7410, Sensitivity 69.8%, F1 0.6212)!\n\n")
+        f.write(
+            f"* **Baseline_54 (RF):** ROC-AUC {rca_b54_rf['roc_auc_mean']:.4f} ± {rca_b54_rf['roc_auc_std']:.3f}, "
+            f"PR-AUC {rca_b54_rf['average_precision_mean']:.4f}, Sensitivity {rca_b54_rf['sensitivity_mean']*100:.1f}%, "
+            f"Specificity {rca_b54_rf['specificity_mean']*100:.1f}%, F1 {rca_b54_rf['f1_mean']:.4f}, Brier {rca_b54_rf['brier_score_mean']:.4f}.\n"
+        )
+        f.write(
+            f"* **Clinical_18 (RF):** ROC-AUC {rca_c18_rf['roc_auc_mean']:.4f} ± {rca_c18_rf['roc_auc_std']:.3f}, "
+            f"PR-AUC {rca_c18_rf['average_precision_mean']:.4f}, Sensitivity {rca_c18_rf['sensitivity_mean']*100:.1f}%, "
+            f"Specificity {rca_c18_rf['specificity_mean']*100:.1f}%, F1 {rca_c18_rf['f1_mean']:.4f}, Brier {rca_c18_rf['brier_score_mean']:.4f}.\n"
+        )
+        f.write(
+            f"* **Augmented_23 (RF):** ROC-AUC **{rca_a23_rf['roc_auc_mean']:.4f} ± {rca_a23_rf['roc_auc_std']:.3f}**, "
+            f"PR-AUC **{rca_a23_rf['average_precision_mean']:.4f}**, Sensitivity **{rca_a23_rf['sensitivity_mean']*100:.1f}%**, "
+            f"Specificity **{rca_a23_rf['specificity_mean']*100:.1f}%**, F1 **{rca_a23_rf['f1_mean']:.4f}**, Brier **{rca_a23_rf['brier_score_mean']:.4f}**.\n"
+        )
+        f.write(
+            f"* **Augmented_23 (Stacking):** ROC-AUC **{rca_a23_st['roc_auc_mean']:.4f} ± {rca_a23_st['roc_auc_std']:.3f}**, "
+            f"PR-AUC **{rca_a23_st['average_precision_mean']:.4f}**, Sensitivity **{rca_a23_st['sensitivity_mean']*100:.1f}%**, "
+            f"Specificity **{rca_a23_st['specificity_mean']*100:.1f}%**, F1 **{rca_a23_st['f1_mean']:.4f}**, Brier **{rca_a23_st['brier_score_mean']:.4f}**.\n"
+        )
+        f.write("* **Clinical Takeaway:** The addition of `ESR`, `BUN`, `Neut`, `Dyspnea`, and `Poor R Progression` successfully **recovers the RCA discriminative drop**. Under Stacking, Augmented_23 delivers the highest overall RCA performance in cross-validation (ROC-AUC 0.7463, Sensitivity 67.5%, F1 0.5986).\n\n")
 
         f.write("---\n\n")
         f.write("## 6. Recommendations & Integration Impact\n\n")

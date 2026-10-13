@@ -4,6 +4,11 @@
 **Threshold Selection Scope:** Fitted strictly on Inner Out-Of-Fold Training Probabilities (Zero Outer Test Leakage)  
 **Generated:** 2026-10-11 23:30:22  
 
+> [!NOTE]
+> **Provenance & Feature Scope Notice:**  
+> The threshold tuning experiments documented in this report evaluated the **54-feature production baseline schema** (`Baseline_54`) during Phase 4 (October 11, 2026).  
+> The current 23-feature research candidate pipelines (`Augmented_23` in `ml/research_artifacts_23/`) operate under the fixed standard decision threshold of **$T = 0.50$** pending prospective threshold optimization on the 23-feature schema.
+
 ---
 
 ## 1. Executive Summary & Objective Definitions

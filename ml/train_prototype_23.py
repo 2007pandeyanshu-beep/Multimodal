@@ -6,6 +6,10 @@ Trains the 4 target inference pipelines for the isolated 23-feature prototype:
 1. Cath (Overall CAD) - Soft Voting Ensemble (LR + RF + GB)
 2. LAD Stenosis        - Balanced Random Forest Classifier
 3. LCX Stenosis        - Stacking Ensemble (LR meta-learner with 5-fold OOF probabilities)
+                         [NOTE: Experimental candidate focusing on marginal sensitivity (+0.82%).
+                          In contrast, ml/train_research_23_models.py serializes Balanced Random Forest
+                          (Candidate A: lower Brier error & operational simplicity) into ml/research_artifacts_23/
+                          for the active /research-23/ API. Both remain valid research candidates without declaring a universal winner.]
 4. RCA Stenosis        - Stacking Ensemble (LR meta-learner with 5-fold OOF probabilities)
 
 Artifacts are serialized exclusively into ml/prototype_23_artifacts/.
