@@ -1,0 +1,151 @@
+{
+  "experiment_name": "Production RF vs Ensemble Comparative Audit",
+  "timestamp": "2026-10-13T23:33:40.623166",
+  "dataset_rows": 303,
+  "raw_excel_sha256": "739343245c2ba578b541370217531750d8e936022f928b83e0d91756caa3ff0b",
+  "clean_csv_sha256": "7b1608c56149772916a182857a279c69807463e56efa5d8b0b192dd5b35d924f",
+  "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "random_seeds": [
+    42,
+    101,
+    2024,
+    777,
+    888
+  ],
+  "repetitions_count": 5,
+  "folds_per_repetition": 5,
+  "total_outer_folds_per_config": 25,
+  "targets_evaluated": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+  ],
+  "target_configurations": {
+    "Cath": {
+      "positive_label": "CAD",
+      "negative_label": "Normal",
+      "description": "Overall Coronary Artery Disease (Catheterization outcome)",
+      "architectures": [
+        "RandomForest",
+        "SoftVoting"
+      ]
+    },
+    "LAD": {
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "description": "Left Anterior Descending Stenosis (>=50% occlusion)",
+      "architectures": [
+        "RandomForest",
+        "SoftVoting",
+        "Stacking"
+      ]
+    },
+    "LCX": {
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "description": "Left Circumflex Stenosis (>=50% occlusion)",
+      "architectures": [
+        "RandomForest",
+        "Stacking"
+      ]
+    },
+    "RCA": {
+      "positive_label": "Stenotic",
+      "negative_label": "Normal",
+      "description": "Right Coronary Artery Stenosis (>=50% occlusion)",
+      "architectures": [
+        "RandomForest",
+        "Stacking"
+      ]
+    }
+  },
+  "feature_sets": {
+    "Baseline_54": 54,
+    "Augmented_23": 23
+  },
+  "feature_lists": {
+    "Baseline_54": [
+      "Age",
+      "Weight",
+      "Length",
+      "Sex",
+      "BMI",
+      "DM",
+      "HTN",
+      "Current Smoker",
+      "EX-Smoker",
+      "FH",
+      "Obesity",
+      "CRF",
+      "CVA",
+      "Airway disease",
+      "Thyroid Disease",
+      "CHF",
+      "DLP",
+      "BP",
+      "PR",
+      "Edema",
+      "Weak Peripheral Pulse",
+      "Lung rales",
+      "Systolic Murmur",
+      "Diastolic Murmur",
+      "Typical Chest Pain",
+      "Dyspnea",
+      "Function Class",
+      "Atypical",
+      "Nonanginal",
+      "LowTH Ang",
+      "Q Wave",
+      "St Elevation",
+      "St Depression",
+      "Tinversion",
+      "LVH",
+      "Poor R Progression",
+      "BBB",
+      "FBS",
+      "CR",
+      "TG",
+      "LDL",
+      "HDL",
+      "BUN",
+      "ESR",
+      "HB",
+      "K",
+      "Na",
+      "WBC",
+      "Lymph",
+      "Neut",
+      "PLT",
+      "EF-TTE",
+      "Region RWMA",
+      "VHD"
+    ],
+    "Augmented_23": [
+      "Age",
+      "Sex",
+      "BMI",
+      "BP",
+      "PR",
+      "DM",
+      "HTN",
+      "Current Smoker",
+      "Typical Chest Pain",
+      "St Elevation",
+      "St Depression",
+      "EF-TTE",
+      "Region RWMA",
+      "FBS",
+      "CR",
+      "LDL",
+      "HDL",
+      "TG",
+      "ESR",
+      "BUN",
+      "Neut",
+      "Dyspnea",
+      "Poor R Progression"
+    ]
+  },
+  "primary_threshold": 0.5
+}

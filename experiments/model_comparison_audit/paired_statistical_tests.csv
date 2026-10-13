@@ -1,0 +1,20 @@
+target,comparison,model_a,model_b,mean_delta_roc_auc,std_delta_roc_auc,wilcoxon_p_auc,t_test_p_auc,mean_delta_pr_auc,mean_delta_sensitivity,wilcoxon_p_sensitivity,mean_delta_specificity,mean_delta_f1,wilcoxon_p_f1,mean_delta_brier,wilcoxon_p_brier,mean_delta_fn,total_delta_fn
+Cath,SoftVoting_54 vs Prod_RF_54,RandomForest (Baseline_54),SoftVoting (Baseline_54),0.0073,0.0159,0.0292,0.0328,0.0026,0.0508,0.0,-0.0435,0.0207,0.0001,-0.0183,0.0,-2.2,-55
+Cath,Augmented_RF_23 vs Prod_RF_54,RandomForest (Baseline_54),RandomForest (Augmented_23),0.0024,0.0122,0.2817,0.335,0.0003,0.0018,0.9247,-0.0023,0.0009,0.9571,-0.0071,0.0002,-0.08,-2
+Cath,SoftVoting_23 vs Prod_RF_54,RandomForest (Baseline_54),SoftVoting (Augmented_23),0.0069,0.0136,0.0303,0.0202,0.0023,0.0387,0.0001,-0.0571,0.0116,0.0626,-0.0189,0.0,-1.68,-42
+Cath,SoftVoting_23 vs Augmented_RF_23,RandomForest (Augmented_23),SoftVoting (Augmented_23),0.0045,0.0112,0.0924,0.0622,0.0019,0.0369,0.0001,-0.0548,0.0108,0.0237,-0.0118,0.0,-1.6,-40
+LAD,SoftVoting_54 vs Prod_RF_54,RandomForest (Baseline_54),SoftVoting (Baseline_54),0.0041,0.0236,0.3671,0.3988,0.0091,0.0057,0.7755,0.0143,0.0076,0.4273,-0.0102,0.0001,-0.2,-5
+LAD,Stacking_54 vs Prod_RF_54,RandomForest (Baseline_54),Stacking (Baseline_54),0.0025,0.0246,0.501,0.6245,0.0078,-0.0429,0.0016,0.0365,-0.0159,0.0899,-0.0069,0.011,1.52,38
+LAD,Augmented_RF_23 vs Prod_RF_54,RandomForest (Baseline_54),RandomForest (Augmented_23),-0.0003,0.023,0.925,0.9544,0.0001,-0.0114,0.293,0.0223,0.0001,0.874,-0.0054,0.0032,0.4,10
+LAD,SoftVoting_23 vs Prod_RF_54,RandomForest (Baseline_54),SoftVoting (Augmented_23),0.0034,0.0268,0.6338,0.5343,0.0053,0.0023,0.9459,0.0111,0.0044,0.6963,-0.0111,0.0,-0.08,-2
+LAD,Stacking_23 vs Prod_RF_54,RandomForest (Baseline_54),Stacking (Augmented_23),0.0037,0.0269,0.5184,0.5062,0.0056,-0.0417,0.0143,0.0428,-0.0133,0.1817,-0.0089,0.0006,1.48,37
+LAD,SoftVoting_23 vs Augmented_RF_23,RandomForest (Augmented_23),SoftVoting (Augmented_23),0.0037,0.0156,0.1828,0.2544,0.0052,0.0137,0.0395,-0.0112,0.0042,0.3744,-0.0056,0.0017,-0.48,-12
+LAD,Stacking_23 vs Augmented_RF_23,RandomForest (Augmented_23),Stacking (Augmented_23),0.004,0.0175,0.2752,0.2763,0.0055,-0.0304,0.01,0.0204,-0.0135,0.2258,-0.0034,0.0544,1.08,27
+LCX,Stacking_54 vs Prod_RF_54,RandomForest (Baseline_54),Stacking (Baseline_54),0.006,0.0288,0.2878,0.3169,0.0087,0.0323,0.0435,-0.0183,0.0116,0.536,0.0003,0.9357,-0.76,-19
+LCX,Augmented_RF_23 vs Prod_RF_54,RandomForest (Baseline_54),RandomForest (Augmented_23),0.0021,0.0391,0.925,0.7964,-0.0028,0.0353,0.0407,-0.0151,0.0152,0.1963,-0.0025,0.2311,-0.84,-21
+LCX,Stacking_23 vs Prod_RF_54,RandomForest (Baseline_54),Stacking (Augmented_23),0.0059,0.042,0.4742,0.5001,0.0014,0.0435,0.0174,-0.0107,0.0219,0.0508,0.0009,0.7468,-1.04,-26
+LCX,Stacking_23 vs Augmented_RF_23,RandomForest (Augmented_23),Stacking (Augmented_23),0.0038,0.0184,0.4675,0.3243,0.0042,0.0083,0.9119,0.0044,0.0067,0.7567,0.0034,0.0313,-0.2,-5
+RCA,Stacking_54 vs Prod_RF_54,RandomForest (Baseline_54),Stacking (Baseline_54),0.001,0.0232,0.7879,0.8411,-0.0022,0.0438,0.0064,-0.0424,0.0097,0.4432,0.0046,0.0042,-1.0,-25
+RCA,Augmented_RF_23 vs Prod_RF_54,RandomForest (Baseline_54),RandomForest (Augmented_23),-0.0009,0.0227,0.7878,0.8455,-0.0106,0.0089,0.7346,-0.0096,0.0018,0.6721,-0.0012,0.2758,-0.2,-5
+RCA,Stacking_23 vs Prod_RF_54,RandomForest (Baseline_54),Stacking (Augmented_23),0.0191,0.0309,0.0074,0.0057,0.0202,0.0455,0.0122,-0.0328,0.0129,0.2259,-0.0022,0.1073,-1.04,-26
+RCA,Stacking_23 vs Augmented_RF_23,RandomForest (Augmented_23),Stacking (Augmented_23),0.02,0.0312,0.0094,0.0044,0.0308,0.0366,0.1195,-0.0232,0.011,0.4261,-0.001,0.3892,-0.84,-21

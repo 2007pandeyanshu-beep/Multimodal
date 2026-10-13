@@ -1,6 +1,7 @@
-import React from 'react';
-import { X, Activity, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Activity, ShieldCheck, UploadCloud, FileText } from 'lucide-react';
 import { PatientAssessmentForm } from './PatientAssessmentForm';
+import { PdfReportUploader } from './PdfReportUploader';
 
 interface PatientAssessmentModalProps {
   isOpen: boolean;
@@ -11,6 +12,8 @@ export const PatientAssessmentModal: React.FC<PatientAssessmentModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [activeTab, setActiveTab] = useState<'pdf' | 'manual'>('pdf');
+
   if (!isOpen) return null;
 
   return (
@@ -57,19 +60,53 @@ export const PatientAssessmentModal: React.FC<PatientAssessmentModalProps> = ({
           </button>
         </div>
 
+        {/* Tab Selection: PDF Upload vs Manual Form */}
+        <div className="flex items-center gap-2 mb-6 p-1.5 rounded-2xl bg-slate-900/90 border border-slate-800">
+          <button
+            type="button"
+            onClick={() => setActiveTab('pdf')}
+            className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              activeTab === 'pdf'
+                ? 'bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-500/50 text-cyan-300 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <UploadCloud className="w-4 h-4 text-cyan-400" />
+            <span>Upload Medical Report (PDF)</span>
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-500/30 hidden sm:inline-block">
+              AI Extraction
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('manual')}
+            className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              activeTab === 'manual'
+                ? 'bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-500/50 text-cyan-300 shadow-md'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <FileText className="w-4 h-4 text-slate-400" />
+            <span>Manual Clinical Intake Form</span>
+          </button>
+        </div>
+
         {/* Clinical Integrity Alert Banner */}
         <div className="mb-6 p-4 rounded-2xl bg-cyan-950/30 border border-cyan-500/20 flex items-start gap-3">
           <ShieldCheck className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
           <div className="text-xs text-slate-300 space-y-0.5">
             <span className="font-semibold text-white">Honest AI Clinical Protocol: </span>
             <span>
-              This form collects real clinical markers (demographics, lipid profile, hemodynamics, and ECG indices) for multi-vessel risk localization. If an external model server is not connected, the exact JSON feature vector is prepared without fabricating synthetic predictions.
+              {activeTab === 'pdf'
+                ? 'PDF reports are extracted strictly in the local environment using PyMuPDF and local OCR. Extracted parameters require clinician verification before running multi-vessel risk models.'
+                : 'This form collects real clinical markers (demographics, lipid profile, hemodynamics, and ECG indices) for multi-vessel risk localization. If an external model server is not connected, the exact JSON feature vector is prepared without fabricating synthetic predictions.'}
             </span>
           </div>
         </div>
 
-        {/* The Form */}
-        <PatientAssessmentForm />
+        {/* Tab Content */}
+        {activeTab === 'pdf' ? <PdfReportUploader /> : <PatientAssessmentForm />}
       </div>
     </div>
   );

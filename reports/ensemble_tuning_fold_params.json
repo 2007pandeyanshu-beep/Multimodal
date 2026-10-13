@@ -1,0 +1,1050 @@
+{
+  "Cath": {
+    "fold_1": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l2",
+          "clf__solver": "lbfgs"
+        },
+        "inner_cv_best_roc_auc": 0.9163
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.9172
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 100,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.9175
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 2.5035,
+          "rf_weight": 1.7968,
+          "gb_weight": 2.4051,
+          "intercept": -3.7215
+        }
+      }
+    },
+    "fold_2": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l2",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.9088
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.9266
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.9241
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 2.0193,
+          "rf_weight": 2.1305,
+          "gb_weight": 2.8629,
+          "intercept": -3.9983
+        }
+      }
+    },
+    "fold_3": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l2",
+          "clf__solver": "lbfgs"
+        },
+        "inner_cv_best_roc_auc": 0.9291
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.9327
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.921
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 2.4512,
+          "rf_weight": 2.2988,
+          "gb_weight": 1.9197,
+          "intercept": -3.7171
+        }
+      }
+    },
+    "fold_4": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l2",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.9133
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "sqrt",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.914
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.9126
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 2.4383,
+          "rf_weight": 1.9804,
+          "gb_weight": 2.2747,
+          "intercept": -3.8516
+        }
+      }
+    },
+    "fold_5": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 1.0,
+          "clf__penalty": "l1",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.94
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.9406
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50,
+          "clf__subsample": 1.0
+        },
+        "inner_cv_best_roc_auc": 0.9443
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 2.8028,
+          "rf_weight": 1.4569,
+          "gb_weight": 2.3865,
+          "intercept": -3.7309
+        }
+      }
+    }
+  },
+  "LAD": {
+    "fold_1": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 1.0,
+          "clf__penalty": "l1",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.8589
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.8565
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 3,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.8567
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 2.2644,
+          "rf_weight": 1.6023,
+          "gb_weight": 1.9479,
+          "intercept": -3.0249
+        }
+      }
+    },
+    "fold_2": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l1",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.8466
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.863
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.8485
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.9426,
+          "rf_weight": 1.9747,
+          "gb_weight": 2.3788,
+          "intercept": -3.3364
+        }
+      }
+    },
+    "fold_3": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l2",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.8055
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.8371
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.839
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.7862,
+          "rf_weight": 1.902,
+          "gb_weight": 2.4569,
+          "intercept": -3.3361
+        }
+      }
+    },
+    "fold_4": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l1",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.8193
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "sqrt",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.8025
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 3,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.7656
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 2.4664,
+          "rf_weight": 1.8988,
+          "gb_weight": 1.2855,
+          "intercept": -2.9244
+        }
+      }
+    },
+    "fold_5": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l2",
+          "clf__solver": "lbfgs"
+        },
+        "inner_cv_best_roc_auc": 0.8287
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "sqrt",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.8529
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50,
+          "clf__subsample": 1.0
+        },
+        "inner_cv_best_roc_auc": 0.8487
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.6664,
+          "rf_weight": 2.0351,
+          "gb_weight": 1.9084,
+          "intercept": -2.9223
+        }
+      }
+    }
+  },
+  "LCX": {
+    "fold_1": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.01,
+          "clf__penalty": "l2",
+          "clf__solver": "lbfgs"
+        },
+        "inner_cv_best_roc_auc": 0.7506
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.7741
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50,
+          "clf__subsample": 1.0
+        },
+        "inner_cv_best_roc_auc": 0.7489
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.8646,
+          "rf_weight": 1.9634,
+          "gb_weight": 2.3116,
+          "intercept": -2.7981
+        }
+      }
+    },
+    "fold_2": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.01,
+          "clf__penalty": "l2",
+          "clf__solver": "lbfgs"
+        },
+        "inner_cv_best_roc_auc": 0.6962
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "sqrt",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.7159
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.6945
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.3815,
+          "rf_weight": 1.9719,
+          "gb_weight": 1.3263,
+          "intercept": -2.1449
+        }
+      }
+    },
+    "fold_3": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.01,
+          "clf__penalty": "l2",
+          "clf__solver": "lbfgs"
+        },
+        "inner_cv_best_roc_auc": 0.6956
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.709
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 50,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.7049
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.478,
+          "rf_weight": 1.3982,
+          "gb_weight": 2.0454,
+          "intercept": -2.1896
+        }
+      }
+    },
+    "fold_4": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.1,
+          "clf__penalty": "l2",
+          "clf__solver": "lbfgs"
+        },
+        "inner_cv_best_roc_auc": 0.7568
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.7589
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.7895
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.5718,
+          "rf_weight": 1.0937,
+          "gb_weight": 2.3275,
+          "intercept": -2.2365
+        }
+      }
+    },
+    "fold_5": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.01,
+          "clf__penalty": "l2",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.7373
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 5,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.755
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 3,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.7264
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.6386,
+          "rf_weight": 2.1026,
+          "gb_weight": 1.8325,
+          "intercept": -2.5776
+        }
+      }
+    }
+  },
+  "RCA": {
+    "fold_1": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 1.0,
+          "clf__penalty": "l1",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.7525
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "sqrt",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.7377
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.1,
+          "clf__max_depth": 3,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.7322
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.9613,
+          "rf_weight": 1.1667,
+          "gb_weight": 0.7147,
+          "intercept": -1.7769
+        }
+      }
+    },
+    "fold_2": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.01,
+          "clf__penalty": "l2",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.7261
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.7089
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.6794
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.7608,
+          "rf_weight": 1.5136,
+          "gb_weight": 1.1484,
+          "intercept": -2.0588
+        }
+      }
+    },
+    "fold_3": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 0.01,
+          "clf__penalty": "l2",
+          "clf__solver": "lbfgs"
+        },
+        "inner_cv_best_roc_auc": 0.6959
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.734
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50,
+          "clf__subsample": 1.0
+        },
+        "inner_cv_best_roc_auc": 0.7096
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.3648,
+          "rf_weight": 1.845,
+          "gb_weight": 1.881,
+          "intercept": -2.2832
+        }
+      }
+    },
+    "fold_4": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 1.0,
+          "clf__penalty": "l1",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.7194
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50
+        },
+        "inner_cv_best_roc_auc": 0.702
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 3,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 100,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.6922
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.7185,
+          "rf_weight": 0.8474,
+          "gb_weight": 0.6951,
+          "intercept": -1.4749
+        }
+      }
+    },
+    "fold_5": {
+      "LogisticRegression": {
+        "best_params": {
+          "clf__C": 1.0,
+          "clf__penalty": "l2",
+          "clf__solver": "liblinear"
+        },
+        "inner_cv_best_roc_auc": 0.747
+      },
+      "RandomForest": {
+        "best_params": {
+          "clf__max_depth": 3,
+          "clf__max_features": "log2",
+          "clf__min_samples_leaf": 2,
+          "clf__n_estimators": 100
+        },
+        "inner_cv_best_roc_auc": 0.7581
+      },
+      "GradientBoosting": {
+        "best_params": {
+          "clf__learning_rate": 0.03,
+          "clf__max_depth": 2,
+          "clf__min_samples_leaf": 4,
+          "clf__n_estimators": 50,
+          "clf__subsample": 0.8
+        },
+        "inner_cv_best_roc_auc": 0.7028
+      },
+      "SoftVoting": {
+        "combination_type": "Equal-weight Soft Voting (Mean predicted probability)",
+        "base_models": [
+          "LogisticRegression",
+          "RandomForest",
+          "GradientBoosting"
+        ],
+        "weights": [
+          0.3333,
+          0.3333,
+          0.3333
+        ]
+      },
+      "Stacking": {
+        "meta_model_type": "LogisticRegression(class_weight='balanced')",
+        "cv_method": "3-Fold Stratified Out-Of-Fold probability generation on X_train",
+        "meta_coefficients": {
+          "lr_weight": 1.9896,
+          "rf_weight": 1.3203,
+          "gb_weight": 0.7839,
+          "intercept": -1.9008
+        }
+      }
+    }
+  }
+}
