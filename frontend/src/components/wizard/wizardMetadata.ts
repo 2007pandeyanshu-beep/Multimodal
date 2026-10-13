@@ -5,7 +5,7 @@
  */
 
 import type { CanonicalPatientInput } from '../../api/types.ts';
-import type { WizardFormData, WizardStepId } from './wizardTypes.ts';
+import type { WizardFormData, WizardStepId, WizardPreset } from './wizardTypes.ts';
 
 export interface FeatureSpecification {
   canonicalField: keyof CanonicalPatientInput;
@@ -759,3 +759,76 @@ export function adaptWizardDataToCanonical(data: WizardFormData): CanonicalPatie
     VHD: data.vhd as 'Normal' | 'Mild' | 'Moderate' | 'Severe',
   };
 }
+
+/**
+ * Calculates BMI (kg/m²) and dataset Obesity flag ('Y' | 'N') from height (cm) and weight (kg).
+ * Uses formula: Weight (kg) / (Height (m))² rounded to 1 decimal place.
+ * Obesity threshold: BMI >= 25.0 kg/m² per Z-Alizadeh Sani protocol.
+ */
+export function calculateBmiAndObesity(
+  lengthCm: number | '',
+  weightKg: number | ''
+): { bmi: number | ''; obesity: 'Y' | 'N' | '' } {
+  if (
+    lengthCm === '' ||
+    weightKg === '' ||
+    Number(lengthCm) <= 0 ||
+    Number(weightKg) <= 0
+  ) {
+    return { bmi: '', obesity: '' };
+  }
+  const hM = Number(lengthCm) / 100;
+  const bmi = Math.round((Number(weightKg) / (hM * hM)) * 10) / 10;
+  const obesity = bmi >= 25.0 ? 'Y' : 'N';
+  return { bmi, obesity };
+}
+
+/**
+ * Computes assessment session metadata (session ID, synthetic demo flag, and preset name)
+ * based on whether an untouched demo preset is currently active.
+ */
+export function computeAssessmentSessionMeta(
+  activePreset: WizardPreset | null,
+  providedSessId?: string
+): {
+  sessionId: string;
+  isSyntheticDemo: boolean;
+  demoPresetName?: string;
+} {
+  const sessId =
+    providedSessId ||
+    ((activePreset ? 'DEMO-' : 'ASMT-') +
+      Math.random().toString(36).substring(2, 9).toUpperCase());
+
+  return {
+    sessionId: sessId,
+    isSyntheticDemo: Boolean(activePreset),
+    demoPresetName: activePreset?.name,
+  };
+}
+
+/**
+ * Pure transition function for editing any field(s) in the wizard:
+ * updates form data atomically and unconditionally clears active demo preset designation,
+ * guaranteeing edited presets are not mislabeled as synthetic benchmarks.
+ */
+export function applyWizardFieldChange(
+  currentData: WizardFormData,
+  fieldOrUpdates: keyof WizardFormData | Partial<WizardFormData>,
+  value: unknown,
+  activePreset: WizardPreset | null
+): {
+  nextData: WizardFormData;
+  nextPreset: WizardPreset | null;
+} {
+  const updates: Partial<WizardFormData> =
+    typeof fieldOrUpdates === 'string'
+      ? { [fieldOrUpdates]: value }
+      : fieldOrUpdates;
+
+  return {
+    nextData: { ...currentData, ...updates },
+    nextPreset: null, // Any user edit clears active demo preset
+  };
+}
+

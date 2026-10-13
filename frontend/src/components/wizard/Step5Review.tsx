@@ -27,6 +27,7 @@ interface Step5ReviewProps {
   data: WizardFormData;
   validationErrors: Record<string, string>;
   isSubmitting: boolean;
+  isLongWaiting?: boolean;
   onNavigateToStep: (stepId: WizardStepId) => void;
   onSubmit: () => void;
 }
@@ -35,6 +36,7 @@ export const Step5Review: React.FC<Step5ReviewProps> = ({
   data,
   validationErrors,
   isSubmitting,
+  isLongWaiting = false,
   onNavigateToStep,
   onSubmit,
 }) => {
@@ -286,6 +288,21 @@ export const Step5Review: React.FC<Step5ReviewProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Cloud Cold Start Non-Alarming Waiting Notice */}
+      {isSubmitting && isLongWaiting && (
+        <div className="p-4 sm:p-5 rounded-2xl bg-sky-50 border border-sky-200/90 text-sky-950 flex items-start gap-3.5 animate-in fade-in duration-300">
+          <RefreshCw className="w-5 h-5 text-sky-700 animate-spin shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <h5 className="text-sm font-bold text-sky-900">
+              Connecting to Secure Machine Learning Service...
+            </h5>
+            <p className="text-xs sm:text-sm text-sky-800 leading-relaxed">
+              The inference container is initializing (cloud free-tier cold starts may take up to 60 seconds on initial startup). All 54 clinical parameters are preserved.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Action Section */}
       <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">

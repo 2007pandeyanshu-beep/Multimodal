@@ -96,7 +96,7 @@ export function usePatientExplanation(
     setError(null);
 
     try {
-      const result = await explainPatient(payload, requestedTargets, 10000);
+      const result = await explainPatient(payload, requestedTargets, 90000);
 
       // Guard against race conditions: only update if session has not changed
       if (currentSessionIdRef.current === sessId) {

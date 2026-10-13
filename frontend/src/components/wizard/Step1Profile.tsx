@@ -6,62 +6,43 @@
  */
 
 import React from 'react';
-import { User, AlertCircle, Scale, Info, Cigarette, Users2 } from 'lucide-react';
+import { User, AlertCircle, Scale, Cigarette } from 'lucide-react';
 import type { WizardFormData } from './wizardTypes.ts';
+import { calculateBmiAndObesity } from './wizardMetadata.ts';
 
 interface Step1ProfileProps {
   data: WizardFormData;
   errors: Record<string, string>;
-  onChange: (field: keyof WizardFormData, value: unknown) => void;
+  onChange: (fieldOrUpdates: keyof WizardFormData | Partial<WizardFormData>, value?: unknown) => void;
 }
 
 export const Step1Profile: React.FC<Step1ProfileProps> = ({ data, errors, onChange }) => {
-  // Synchronize height, weight, BMI, and obesity status dynamically with full provenance
+  // Synchronize height, weight, BMI, and obesity status dynamically with atomic updates
   const handleHeightChange = (heightVal: number | '') => {
-    onChange('length', heightVal);
-    if (heightVal !== '' && data.weight !== '') {
-      const hM = Number(heightVal) / 100;
-      const computedBmi = Math.round((Number(data.weight) / (hM * hM)) * 10) / 10;
-      onChange('bmi', computedBmi);
-      onChange('obesity', computedBmi >= 25.0 ? 'Y' : 'N');
-    } else {
-      onChange('bmi', '');
-      onChange('obesity', '');
-    }
+    const { bmi, obesity } = calculateBmiAndObesity(heightVal, data.weight);
+    onChange({
+      length: heightVal,
+      bmi,
+      obesity,
+    });
   };
 
   const handleWeightChange = (weightVal: number | '') => {
-    onChange('weight', weightVal);
-    if (weightVal !== '' && data.length !== '') {
-      const hM = Number(data.length) / 100;
-      const computedBmi = Math.round((Number(weightVal) / (hM * hM)) * 10) / 10;
-      onChange('bmi', computedBmi);
-      onChange('obesity', computedBmi >= 25.0 ? 'Y' : 'N');
-    } else {
-      onChange('bmi', '');
-      onChange('obesity', '');
-    }
-  };
-
-  const handleBmiChange = (bmiVal: number | '') => {
-    onChange('bmi', bmiVal);
-    if (bmiVal !== '') {
-      onChange('obesity', Number(bmiVal) >= 25.0 ? 'Y' : 'N');
-    } else {
-      onChange('obesity', '');
-    }
+    const { bmi, obesity } = calculateBmiAndObesity(data.length, weightVal);
+    onChange({
+      weight: weightVal,
+      bmi,
+      obesity,
+    });
   };
 
   const handleSmokingChange = (type: 'never' | 'current' | 'ex') => {
     if (type === 'current') {
-      onChange('currentSmoker', 1);
-      onChange('exSmoker', 0);
+      onChange({ currentSmoker: 1, exSmoker: 0 });
     } else if (type === 'ex') {
-      onChange('currentSmoker', 0);
-      onChange('exSmoker', 1);
+      onChange({ currentSmoker: 0, exSmoker: 1 });
     } else if (type === 'never') {
-      onChange('currentSmoker', 0);
-      onChange('exSmoker', 0);
+      onChange({ currentSmoker: 0, exSmoker: 0 });
     }
   };
 
@@ -254,15 +235,13 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({ data, errors, onChan
                 step="0.1"
                 min={10}
                 max={80}
+                readOnly
                 value={data.bmi}
-                onChange={(e) =>
-                  handleBmiChange(e.target.value === '' ? '' : parseFloat(e.target.value))
-                }
-                placeholder={data.length && data.weight ? 'Auto-calculating...' : 'Enter height & weight'}
-                className={`w-full h-12 pl-4 pr-16 rounded-xl bg-white border text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 transition-all font-mono ${
+                placeholder={data.length && data.weight ? 'Auto-calculating...' : 'Calculated from height & weight'}
+                className={`w-full h-12 pl-4 pr-16 rounded-xl bg-slate-50/70 border text-base text-slate-900 placeholder-slate-400 focus:outline-none transition-all font-mono cursor-default ${
                   errors.bmi
                     ? 'border-rose-400 focus:ring-rose-200'
-                    : 'border-slate-300 focus:border-teal-500 focus:ring-teal-500/10'
+                    : 'border-slate-300'
                 }`}
               />
               <span className="absolute right-4 top-3 text-sm text-slate-500 font-mono pointer-events-none">
@@ -287,8 +266,11 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({ data, errors, onChan
               <label className="block text-sm font-medium text-slate-800 truncate">
                 Dataset Obesity Status (BMI ≥ 25.0) <span className="text-rose-500">*</span>
               </label>
-              <span className="text-xs text-slate-600 font-mono bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200 shrink-0">
-                Standard
+              <span
+                className="text-xs text-slate-600 font-mono bg-slate-100/90 px-2.5 py-0.5 rounded-md border border-slate-200 shrink-0 select-none cursor-default"
+                title="Clinical dataset definition (Z-Alizadeh Sani protocol): Obesity threshold is BMI ≥ 25.0 kg/m²"
+              >
+                Protocol Standard
               </span>
             </div>
             <div className="grid grid-cols-2 gap-2.5 h-12">

@@ -71,7 +71,7 @@ function normalizeError(err: unknown, status = 0, defaultMsg = 'An unexpected er
  */
 export async function predictPatient(
   payload: CanonicalPatientInput,
-  timeoutMs = 8000
+  timeoutMs = 90000
 ): Promise<PredictionResponse> {
   const baseUrl = getApiBaseUrl();
   const endpoint = `${baseUrl}/predict`;
@@ -267,7 +267,7 @@ export async function fetchGlobalShapSummary(timeoutMs = 5000): Promise<GlobalSh
 export async function explainPatient(
   payload: CanonicalPatientInput,
   targets?: TargetName[],
-  timeoutMs = 10000
+  timeoutMs = 90000
 ): Promise<ExplainResponse> {
   const baseUrl = getApiBaseUrl();
   const endpoint = `${baseUrl}/predict/explain`;

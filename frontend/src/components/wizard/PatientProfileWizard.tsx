@@ -28,7 +28,15 @@ import {
   validateWizardStep,
   validateAllWizardSteps,
   adaptWizardDataToCanonical,
+  computeAssessmentSessionMeta,
+  applyWizardFieldChange,
 } from './wizardMetadata.ts';
+
+export {
+  computeAssessmentSessionMeta,
+  applyWizardFieldChange,
+} from './wizardMetadata.ts';
+
 import { WorkspaceSidebar } from './WorkspaceSidebar.tsx';
 import { WorkspaceHeader } from './WorkspaceHeader.tsx';
 import { WorkspaceVascularDecor } from './WorkspaceVascularDecor.tsx';
@@ -52,50 +60,6 @@ import {
 import { clearExplanationMemoryCache } from '../../api/usePatientExplanation.ts';
 
 const DRAFT_STORAGE_KEY = 'cardiovision_assessment_draft_v1';
-
-/**
- * Computes assessment session metadata (session ID, synthetic demo flag, and preset name)
- * based on whether an untouched demo preset is currently active.
- */
-export function computeAssessmentSessionMeta(
-  activePreset: WizardPreset | null,
-  providedSessId?: string
-): {
-  sessionId: string;
-  isSyntheticDemo: boolean;
-  demoPresetName?: string;
-} {
-  const sessId =
-    providedSessId ||
-    ((activePreset ? 'DEMO-' : 'ASMT-') +
-      Math.random().toString(36).substring(2, 9).toUpperCase());
-
-  return {
-    sessionId: sessId,
-    isSyntheticDemo: Boolean(activePreset),
-    demoPresetName: activePreset?.name,
-  };
-}
-
-/**
- * Pure transition function for editing any field in the wizard:
- * updates form data and unconditionally clears active demo preset designation,
- * guaranteeing edited presets are not mislabeled as synthetic benchmarks.
- */
-export function applyWizardFieldChange(
-  currentData: WizardFormData,
-  field: keyof WizardFormData,
-  value: unknown,
-  activePreset: WizardPreset | null
-): {
-  nextData: WizardFormData;
-  nextPreset: WizardPreset | null;
-} {
-  return {
-    nextData: { ...currentData, [field]: value },
-    nextPreset: null, // Any user edit clears active demo preset
-  };
-}
 
 export interface PatientProfileWizardProps {
   onClose?: () => void;
@@ -125,6 +89,7 @@ export const PatientProfileWizard: React.FC<PatientProfileWizardProps> = ({ onCl
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLongWaiting, setIsLongWaiting] = useState(false);
   const [apiError, setApiError] = useState<ApiError | null>(null);
 
   // Explicit tracking of synthetic demo preset (null when entering a real assessment or after edit)
@@ -164,26 +129,42 @@ export const PatientProfileWizard: React.FC<PatientProfileWizardProps> = ({ onCl
   };
 
   // Field change handler preserving draft state and clearing active demo preset
-  const handleFieldChange = (field: keyof WizardFormData, value: unknown) => {
-    const { nextData, nextPreset } = applyWizardFieldChange(
-      formData,
-      field,
-      value,
-      activeDemoPreset
-    );
-    setFormData(nextData);
-    persistDraft(nextData);
-    if (activeDemoPreset !== nextPreset) {
-      setActiveDemoPreset(nextPreset);
-    }
+  const handleFieldChange = (
+    fieldOrUpdates: keyof WizardFormData | Partial<WizardFormData>,
+    value?: unknown
+  ) => {
+    setFormData((prev) => {
+      const { nextData, nextPreset } = applyWizardFieldChange(
+        prev,
+        fieldOrUpdates,
+        value,
+        activeDemoPreset
+      );
+      persistDraft(nextData);
+      if (activeDemoPreset !== nextPreset) {
+        setActiveDemoPreset(nextPreset);
+      }
+      return nextData;
+    });
 
     // Clear inline error on change
-    if (errors[field]) {
-      setErrors((prev) => {
-        const next = { ...prev };
-        delete next[field];
-        return next;
-      });
+    if (typeof fieldOrUpdates === 'string') {
+      if (errors[fieldOrUpdates]) {
+        setErrors((prev) => {
+          const next = { ...prev };
+          delete next[fieldOrUpdates];
+          return next;
+        });
+      }
+    } else {
+      const keysToClear = Object.keys(fieldOrUpdates);
+      if (keysToClear.some((k) => errors[k])) {
+        setErrors((prev) => {
+          const next = { ...prev };
+          keysToClear.forEach((k) => delete next[k]);
+          return next;
+        });
+      }
     }
   };
 
@@ -298,12 +279,17 @@ export const PatientProfileWizard: React.FC<PatientProfileWizardProps> = ({ onCl
     }
 
     setIsSubmitting(true);
+    setIsLongWaiting(false);
     setApiError(null);
     setPredictionResponse(null); // Prevent display of stale predictions
 
+    const longWaitTimer = setTimeout(() => {
+      setIsLongWaiting(true);
+    }, 4000);
+
     try {
       const canonicalPayload = adaptWizardDataToCanonical(formData);
-      const response = await predictPatient(canonicalPayload, 8000);
+      const response = await predictPatient(canonicalPayload, 90000);
       const ts = new Date().toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
@@ -358,7 +344,9 @@ export const PatientProfileWizard: React.FC<PatientProfileWizardProps> = ({ onCl
       setApiError(err as ApiError);
       setPredictionResponse(null);
     } finally {
+      clearTimeout(longWaitTimer);
       setIsSubmitting(false);
+      setIsLongWaiting(false);
     }
   };
 
@@ -602,6 +590,7 @@ export const PatientProfileWizard: React.FC<PatientProfileWizardProps> = ({ onCl
                   data={formData}
                   validationErrors={errors}
                   isSubmitting={isSubmitting}
+                  isLongWaiting={isLongWaiting}
                   onNavigateToStep={handleSelectStep}
                   onSubmit={handleSubmitAssessment}
                 />

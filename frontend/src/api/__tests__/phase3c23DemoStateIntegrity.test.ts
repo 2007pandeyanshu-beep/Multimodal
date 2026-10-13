@@ -18,7 +18,7 @@ import path from 'node:path';
 import {
   computeAssessmentSessionMeta,
   applyWizardFieldChange,
-} from '../../components/wizard/PatientProfileWizard.tsx';
+} from '../../components/wizard/wizardMetadata.ts';
 import {
   SYNTHETIC_DEMO_PRESETS,
   EMPTY_WIZARD_DATA,

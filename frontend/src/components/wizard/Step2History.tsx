@@ -12,28 +12,20 @@ import type { WizardFormData } from './wizardTypes.ts';
 interface Step2HistoryProps {
   data: WizardFormData;
   errors: Record<string, string>;
-  onChange: (field: keyof WizardFormData, value: unknown) => void;
+  onChange: (fieldOrUpdates: keyof WizardFormData | Partial<WizardFormData>, value?: unknown) => void;
 }
 
 export const Step2History: React.FC<Step2HistoryProps> = ({ data, errors, onChange }) => {
   // Preset handler for classical angina categorization (preserving exact dataset distribution)
   const handleChestPainPreset = (preset: 'typical' | 'atypical' | 'nonanginal' | 'none') => {
     if (preset === 'typical') {
-      onChange('typicalChestPain', 1);
-      onChange('atypical', 'N');
-      onChange('nonanginal', 'N');
+      onChange({ typicalChestPain: 1, atypical: 'N', nonanginal: 'N' });
     } else if (preset === 'atypical') {
-      onChange('typicalChestPain', 0);
-      onChange('atypical', 'Y');
-      onChange('nonanginal', 'N');
+      onChange({ typicalChestPain: 0, atypical: 'Y', nonanginal: 'N' });
     } else if (preset === 'nonanginal') {
-      onChange('typicalChestPain', 0);
-      onChange('atypical', 'N');
-      onChange('nonanginal', 'Y');
+      onChange({ typicalChestPain: 0, atypical: 'N', nonanginal: 'Y' });
     } else if (preset === 'none') {
-      onChange('typicalChestPain', 0);
-      onChange('atypical', 'N');
-      onChange('nonanginal', 'N');
+      onChange({ typicalChestPain: 0, atypical: 'N', nonanginal: 'N' });
     }
   };
 
