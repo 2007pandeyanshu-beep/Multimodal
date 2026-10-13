@@ -54,6 +54,18 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.warning(f"Failed to initialize experimental models in lifespan: {e}")
 
+    # Load isolated research 23-feature model pipelines
+    try:
+        from backend.research_model_loader import research23_model_manager, RESEARCH_ARTIFACTS_DIR
+        logger.info(f"Loading research 23-feature pipelines from {RESEARCH_ARTIFACTS_DIR}...")
+        research23_model_manager.load_all_models()
+        if research23_model_manager.is_all_ready():
+            logger.info("All 4 research 23-feature target pipelines loaded successfully.")
+        else:
+            logger.warning(f"Research 23-feature model loading warnings: {research23_model_manager.loading_errors}")
+    except Exception as e:
+        logger.warning(f"Failed to initialize research 23-feature models in lifespan: {e}")
+
     yield
     logger.info("Shutting down API...")
 
@@ -248,3 +260,8 @@ app.include_router(experimental_router)
 # Include isolated PDF report ingestion & clinical mapping endpoints
 from backend.pdf.routes import router as pdf_router
 app.include_router(pdf_router)
+
+# Include isolated 23-feature research endpoints
+from backend.research_routes import router as research_router
+app.include_router(research_router)
+
