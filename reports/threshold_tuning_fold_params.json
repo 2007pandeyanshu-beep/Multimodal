@@ -1,0 +1,2250 @@
+{
+  "Cath": {
+    "fold_1": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.3,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9025
+        },
+        "recall_focused_f2": {
+          "threshold": 0.11,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9368
+        },
+        "youden_j": {
+          "threshold": 0.57,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.705
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.39,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.905
+        },
+        "recall_focused_f2": {
+          "threshold": 0.33,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9284
+        },
+        "youden_j": {
+          "threshold": 0.55,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7367
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.46,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.902
+        },
+        "recall_focused_f2": {
+          "threshold": 0.33,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9357
+        },
+        "youden_j": {
+          "threshold": 0.82,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7076
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.43,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9174
+        },
+        "recall_focused_f2": {
+          "threshold": 0.23,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9333
+        },
+        "youden_j": {
+          "threshold": 0.58,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7404
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.3,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9174
+        },
+        "recall_focused_f2": {
+          "threshold": 0.16,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9336
+        },
+        "youden_j": {
+          "threshold": 0.61,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7394
+        }
+      }
+    },
+    "fold_2": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.907
+        },
+        "recall_focused_f2": {
+          "threshold": 0.14,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9368
+        },
+        "youden_j": {
+          "threshold": 0.47,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7105
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9188
+        },
+        "recall_focused_f2": {
+          "threshold": 0.35,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9462
+        },
+        "youden_j": {
+          "threshold": 0.53,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7338
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.54,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9222
+        },
+        "recall_focused_f2": {
+          "threshold": 0.26,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9553
+        },
+        "youden_j": {
+          "threshold": 0.78,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7339
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9218
+        },
+        "recall_focused_f2": {
+          "threshold": 0.37,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9537
+        },
+        "youden_j": {
+          "threshold": 0.57,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7511
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.23,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.918
+        },
+        "recall_focused_f2": {
+          "threshold": 0.16,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9511
+        },
+        "youden_j": {
+          "threshold": 0.49,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7366
+        }
+      }
+    },
+    "fold_3": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.3,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9136
+        },
+        "recall_focused_f2": {
+          "threshold": 0.21,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9497
+        },
+        "youden_j": {
+          "threshold": 0.52,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7106
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9153
+        },
+        "recall_focused_f2": {
+          "threshold": 0.34,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9484
+        },
+        "youden_j": {
+          "threshold": 0.57,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7339
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.65,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9186
+        },
+        "recall_focused_f2": {
+          "threshold": 0.13,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9458
+        },
+        "youden_j": {
+          "threshold": 0.65,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7249
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.44,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9322
+        },
+        "recall_focused_f2": {
+          "threshold": 0.26,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9505
+        },
+        "youden_j": {
+          "threshold": 0.44,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7219
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.32,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9292
+        },
+        "recall_focused_f2": {
+          "threshold": 0.13,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9505
+        },
+        "youden_j": {
+          "threshold": 0.32,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7161
+        }
+      }
+    },
+    "fold_4": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.39,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9029
+        },
+        "recall_focused_f2": {
+          "threshold": 0.17,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9403
+        },
+        "youden_j": {
+          "threshold": 0.47,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.6813
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.46,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9128
+        },
+        "recall_focused_f2": {
+          "threshold": 0.33,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9354
+        },
+        "youden_j": {
+          "threshold": 0.46,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7075
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.52,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9065
+        },
+        "recall_focused_f2": {
+          "threshold": 0.24,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9378
+        },
+        "youden_j": {
+          "threshold": 0.74,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7011
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.54,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9181
+        },
+        "recall_focused_f2": {
+          "threshold": 0.23,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9413
+        },
+        "youden_j": {
+          "threshold": 0.56,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7473
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.32,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9132
+        },
+        "recall_focused_f2": {
+          "threshold": 0.11,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9378
+        },
+        "youden_j": {
+          "threshold": 0.46,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7215
+        }
+      }
+    },
+    "fold_5": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.28,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9178
+        },
+        "recall_focused_f2": {
+          "threshold": 0.1,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9406
+        },
+        "youden_j": {
+          "threshold": 0.66,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.781
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9261
+        },
+        "recall_focused_f2": {
+          "threshold": 0.37,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9435
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.75
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.57,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9244
+        },
+        "recall_focused_f2": {
+          "threshold": 0.3,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9553
+        },
+        "youden_j": {
+          "threshold": 0.7,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7698
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.33,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9307
+        },
+        "recall_focused_f2": {
+          "threshold": 0.33,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9545
+        },
+        "youden_j": {
+          "threshold": 0.6,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.8045
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.31,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.9253
+        },
+        "recall_focused_f2": {
+          "threshold": 0.18,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9375
+        },
+        "youden_j": {
+          "threshold": 0.58,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.7929
+        }
+      }
+    }
+  },
+  "LAD": {
+    "fold_1": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.21,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8265
+        },
+        "recall_focused_f2": {
+          "threshold": 0.12,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8995
+        },
+        "youden_j": {
+          "threshold": 0.47,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5722
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.46,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8449
+        },
+        "recall_focused_f2": {
+          "threshold": 0.35,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9145
+        },
+        "youden_j": {
+          "threshold": 0.5,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5908
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.36,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8328
+        },
+        "recall_focused_f2": {
+          "threshold": 0.36,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9109
+        },
+        "youden_j": {
+          "threshold": 0.57,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5354
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8393
+        },
+        "recall_focused_f2": {
+          "threshold": 0.26,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9157
+        },
+        "youden_j": {
+          "threshold": 0.56,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.6075
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.35,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8387
+        },
+        "recall_focused_f2": {
+          "threshold": 0.2,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9097
+        },
+        "youden_j": {
+          "threshold": 0.55,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5749
+        }
+      }
+    },
+    "fold_2": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.36,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8447
+        },
+        "recall_focused_f2": {
+          "threshold": 0.36,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9128
+        },
+        "youden_j": {
+          "threshold": 0.54,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5424
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.45,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8372
+        },
+        "recall_focused_f2": {
+          "threshold": 0.32,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9091
+        },
+        "youden_j": {
+          "threshold": 0.55,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5764
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.46,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8243
+        },
+        "recall_focused_f2": {
+          "threshold": 0.15,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8997
+        },
+        "youden_j": {
+          "threshold": 0.56,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5511
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.4,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8397
+        },
+        "recall_focused_f2": {
+          "threshold": 0.31,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9091
+        },
+        "youden_j": {
+          "threshold": 0.54,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5836
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.34,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8377
+        },
+        "recall_focused_f2": {
+          "threshold": 0.21,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9073
+        },
+        "youden_j": {
+          "threshold": 0.46,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5795
+        }
+      }
+    },
+    "fold_3": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.39,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8146
+        },
+        "recall_focused_f2": {
+          "threshold": 0.19,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8969
+        },
+        "youden_j": {
+          "threshold": 0.39,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4962
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.49,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8464
+        },
+        "recall_focused_f2": {
+          "threshold": 0.32,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.888
+        },
+        "youden_j": {
+          "threshold": 0.49,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.6032
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.49,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8301
+        },
+        "recall_focused_f2": {
+          "threshold": 0.22,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8805
+        },
+        "youden_j": {
+          "threshold": 0.64,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5624
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.5,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8322
+        },
+        "recall_focused_f2": {
+          "threshold": 0.28,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8922
+        },
+        "youden_j": {
+          "threshold": 0.56,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5558
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.48,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.835
+        },
+        "recall_focused_f2": {
+          "threshold": 0.21,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8883
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5632
+        }
+      }
+    },
+    "fold_4": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.815
+        },
+        "recall_focused_f2": {
+          "threshold": 0.33,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8933
+        },
+        "youden_j": {
+          "threshold": 0.45,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4985
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.43,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8117
+        },
+        "recall_focused_f2": {
+          "threshold": 0.22,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8787
+        },
+        "youden_j": {
+          "threshold": 0.44,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4801
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.44,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.7744
+        },
+        "recall_focused_f2": {
+          "threshold": 0.13,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8599
+        },
+        "youden_j": {
+          "threshold": 0.57,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4184
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.44,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8079
+        },
+        "recall_focused_f2": {
+          "threshold": 0.18,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8787
+        },
+        "youden_j": {
+          "threshold": 0.49,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4972
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.38,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8
+        },
+        "recall_focused_f2": {
+          "threshold": 0.17,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8798
+        },
+        "youden_j": {
+          "threshold": 0.43,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4746
+        }
+      }
+    },
+    "fold_5": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.36,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8205
+        },
+        "recall_focused_f2": {
+          "threshold": 0.18,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8938
+        },
+        "youden_j": {
+          "threshold": 0.53,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4906
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.4,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8428
+        },
+        "recall_focused_f2": {
+          "threshold": 0.36,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9109
+        },
+        "youden_j": {
+          "threshold": 0.46,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5522
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.37,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8333
+        },
+        "recall_focused_f2": {
+          "threshold": 0.26,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.902
+        },
+        "youden_j": {
+          "threshold": 0.6,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.5401
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8505
+        },
+        "recall_focused_f2": {
+          "threshold": 0.28,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9031
+        },
+        "youden_j": {
+          "threshold": 0.45,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.6031
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.36,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.8477
+        },
+        "recall_focused_f2": {
+          "threshold": 0.19,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.9026
+        },
+        "youden_j": {
+          "threshold": 0.42,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.6059
+        }
+      }
+    }
+  },
+  "LCX": {
+    "fold_1": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.43,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6538
+        },
+        "recall_focused_f2": {
+          "threshold": 0.42,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7866
+        },
+        "youden_j": {
+          "threshold": 0.51,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3873
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.45,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6773
+        },
+        "recall_focused_f2": {
+          "threshold": 0.42,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8213
+        },
+        "youden_j": {
+          "threshold": 0.45,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4117
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.35,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6722
+        },
+        "recall_focused_f2": {
+          "threshold": 0.29,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8065
+        },
+        "youden_j": {
+          "threshold": 0.35,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4105
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.704
+        },
+        "recall_focused_f2": {
+          "threshold": 0.4,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8303
+        },
+        "youden_j": {
+          "threshold": 0.41,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4705
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.43,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.7031
+        },
+        "recall_focused_f2": {
+          "threshold": 0.43,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8318
+        },
+        "youden_j": {
+          "threshold": 0.43,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4644
+        }
+      }
+    },
+    "fold_2": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.48,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6161
+        },
+        "recall_focused_f2": {
+          "threshold": 0.36,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7776
+        },
+        "youden_j": {
+          "threshold": 0.5,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3404
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.43,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6337
+        },
+        "recall_focused_f2": {
+          "threshold": 0.3,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7789
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3509
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.29,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6192
+        },
+        "recall_focused_f2": {
+          "threshold": 0.28,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7753
+        },
+        "youden_j": {
+          "threshold": 0.34,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3021
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6466
+        },
+        "recall_focused_f2": {
+          "threshold": 0.25,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7724
+        },
+        "youden_j": {
+          "threshold": 0.42,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3677
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.48,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.633
+        },
+        "recall_focused_f2": {
+          "threshold": 0.36,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7718
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.359
+        }
+      }
+    },
+    "fold_3": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.48,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6244
+        },
+        "recall_focused_f2": {
+          "threshold": 0.35,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7781
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3386
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.45,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6349
+        },
+        "recall_focused_f2": {
+          "threshold": 0.41,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.784
+        },
+        "youden_j": {
+          "threshold": 0.45,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3183
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.32,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6286
+        },
+        "recall_focused_f2": {
+          "threshold": 0.23,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7886
+        },
+        "youden_j": {
+          "threshold": 0.38,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3397
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6271
+        },
+        "recall_focused_f2": {
+          "threshold": 0.34,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7823
+        },
+        "youden_j": {
+          "threshold": 0.49,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3464
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.46,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6167
+        },
+        "recall_focused_f2": {
+          "threshold": 0.39,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7776
+        },
+        "youden_j": {
+          "threshold": 0.52,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3538
+        }
+      }
+    },
+    "fold_4": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.34,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6641
+        },
+        "recall_focused_f2": {
+          "threshold": 0.21,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.802
+        },
+        "youden_j": {
+          "threshold": 0.6,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.382
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.46,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.681
+        },
+        "recall_focused_f2": {
+          "threshold": 0.33,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7962
+        },
+        "youden_j": {
+          "threshold": 0.46,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4352
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.26,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6877
+        },
+        "recall_focused_f2": {
+          "threshold": 0.19,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8172
+        },
+        "youden_j": {
+          "threshold": 0.26,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4301
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.33,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6692
+        },
+        "recall_focused_f2": {
+          "threshold": 0.27,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8231
+        },
+        "youden_j": {
+          "threshold": 0.45,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4267
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.36,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.674
+        },
+        "recall_focused_f2": {
+          "threshold": 0.35,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8216
+        },
+        "youden_j": {
+          "threshold": 0.53,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4222
+        }
+      }
+    },
+    "fold_5": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.47,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6471
+        },
+        "recall_focused_f2": {
+          "threshold": 0.4,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7982
+        },
+        "youden_j": {
+          "threshold": 0.47,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3646
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.43,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6773
+        },
+        "recall_focused_f2": {
+          "threshold": 0.4,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8111
+        },
+        "youden_j": {
+          "threshold": 0.43,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.415
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.3,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6588
+        },
+        "recall_focused_f2": {
+          "threshold": 0.2,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7881
+        },
+        "youden_j": {
+          "threshold": 0.36,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3946
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.4,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6667
+        },
+        "recall_focused_f2": {
+          "threshold": 0.31,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7993
+        },
+        "youden_j": {
+          "threshold": 0.45,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3968
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.46,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.664
+        },
+        "recall_focused_f2": {
+          "threshold": 0.36,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8024
+        },
+        "youden_j": {
+          "threshold": 0.51,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.405
+        }
+      }
+    }
+  },
+  "RCA": {
+    "fold_1": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.35,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6525
+        },
+        "recall_focused_f2": {
+          "threshold": 0.16,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7895
+        },
+        "youden_j": {
+          "threshold": 0.35,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3958
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6454
+        },
+        "recall_focused_f2": {
+          "threshold": 0.38,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7856
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3741
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.12,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6265
+        },
+        "recall_focused_f2": {
+          "threshold": 0.12,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7471
+        },
+        "youden_j": {
+          "threshold": 0.32,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3327
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.32,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6556
+        },
+        "recall_focused_f2": {
+          "threshold": 0.18,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7857
+        },
+        "youden_j": {
+          "threshold": 0.4,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4116
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.48,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6604
+        },
+        "recall_focused_f2": {
+          "threshold": 0.39,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.786
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4315
+        }
+      }
+    },
+    "fold_2": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.635
+        },
+        "recall_focused_f2": {
+          "threshold": 0.38,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7982
+        },
+        "youden_j": {
+          "threshold": 0.47,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3541
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.43,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6332
+        },
+        "recall_focused_f2": {
+          "threshold": 0.43,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7707
+        },
+        "youden_j": {
+          "threshold": 0.43,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3316
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.26,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6118
+        },
+        "recall_focused_f2": {
+          "threshold": 0.17,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7766
+        },
+        "youden_j": {
+          "threshold": 0.26,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.2876
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6298
+        },
+        "recall_focused_f2": {
+          "threshold": 0.31,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7821
+        },
+        "youden_j": {
+          "threshold": 0.41,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3496
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.44,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6336
+        },
+        "recall_focused_f2": {
+          "threshold": 0.44,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7757
+        },
+        "youden_j": {
+          "threshold": 0.47,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.343
+        }
+      }
+    },
+    "fold_3": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.39,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6137
+        },
+        "recall_focused_f2": {
+          "threshold": 0.39,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7727
+        },
+        "youden_j": {
+          "threshold": 0.46,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.2838
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.44,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6454
+        },
+        "recall_focused_f2": {
+          "threshold": 0.4,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7938
+        },
+        "youden_j": {
+          "threshold": 0.44,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3669
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.31,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6255
+        },
+        "recall_focused_f2": {
+          "threshold": 0.18,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7596
+        },
+        "youden_j": {
+          "threshold": 0.36,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.361
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6339
+        },
+        "recall_focused_f2": {
+          "threshold": 0.33,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7733
+        },
+        "youden_j": {
+          "threshold": 0.42,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3696
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.43,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6288
+        },
+        "recall_focused_f2": {
+          "threshold": 0.42,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7813
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3522
+        }
+      }
+    },
+    "fold_4": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.19,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6217
+        },
+        "recall_focused_f2": {
+          "threshold": 0.1,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7807
+        },
+        "youden_j": {
+          "threshold": 0.34,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3262
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.48,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6019
+        },
+        "recall_focused_f2": {
+          "threshold": 0.35,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7672
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3195
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.32,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.5825
+        },
+        "recall_focused_f2": {
+          "threshold": 0.11,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7487
+        },
+        "youden_j": {
+          "threshold": 0.35,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3018
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.33,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6364
+        },
+        "recall_focused_f2": {
+          "threshold": 0.24,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7754
+        },
+        "youden_j": {
+          "threshold": 0.33,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3593
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6303
+        },
+        "recall_focused_f2": {
+          "threshold": 0.3,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7766
+        },
+        "youden_j": {
+          "threshold": 0.41,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3505
+        }
+      }
+    },
+    "fold_5": {
+      "LogisticRegression": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.42,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6667
+        },
+        "recall_focused_f2": {
+          "threshold": 0.14,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7942
+        },
+        "youden_j": {
+          "threshold": 0.42,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4454
+        }
+      },
+      "RandomForest": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.48,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6481
+        },
+        "recall_focused_f2": {
+          "threshold": 0.4,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7914
+        },
+        "youden_j": {
+          "threshold": 0.48,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4033
+        }
+      },
+      "GradientBoosting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.34,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6126
+        },
+        "recall_focused_f2": {
+          "threshold": 0.19,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7641
+        },
+        "youden_j": {
+          "threshold": 0.34,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3285
+        }
+      },
+      "SoftVoting": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.654
+        },
+        "recall_focused_f2": {
+          "threshold": 0.25,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.8011
+        },
+        "youden_j": {
+          "threshold": 0.41,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.4189
+        }
+      },
+      "Stacking": {
+        "default_0.50": {
+          "threshold": 0.5,
+          "objective": "Fixed operational baseline",
+          "inner_score": null
+        },
+        "f1_optimized": {
+          "threshold": 0.41,
+          "objective": "Maximize F1-score (harmonic mean of Precision and Recall)",
+          "inner_score": 0.6388
+        },
+        "recall_focused_f2": {
+          "threshold": 0.35,
+          "objective": "Maximize F2-score (weights Recall 2x over Precision)",
+          "inner_score": 0.7972
+        },
+        "youden_j": {
+          "threshold": 0.47,
+          "objective": "Maximize Youden's J statistic (Sensitivity + Specificity - 1)",
+          "inner_score": 0.3791
+        }
+      }
+    }
+  }
+}

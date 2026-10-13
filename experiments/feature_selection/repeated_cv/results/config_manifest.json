@@ -1,0 +1,50 @@
+{
+  "experiment_name": "Repeated Stratified CV Feature-Engineering Experiment",
+  "timestamp": "2026-10-13T21:04:07.871663",
+  "dataset_rows": 303,
+  "raw_excel_sha256": "739343245c2ba578b541370217531750d8e936022f928b83e0d91756caa3ff0b",
+  "clean_csv_sha256": "7b1608c56149772916a182857a279c69807463e56efa5d8b0b192dd5b35d924f",
+  "python_version": "3.11.9",
+  "scikit_learn_version": "1.9.0",
+  "pandas_version": "2.3.3",
+  "numpy_version": "2.4.1",
+  "scipy_version": "1.17.0",
+  "random_seeds": [
+    42,
+    101,
+    2024,
+    777,
+    888
+  ],
+  "repetitions_count": 5,
+  "folds_per_repetition": 5,
+  "total_outer_folds_per_config": 25,
+  "targets_evaluated": [
+    "Cath",
+    "LAD",
+    "LCX",
+    "RCA"
+  ],
+  "feature_set_counts": {
+    "Baseline_54": 54,
+    "Clinical_18": 18,
+    "Augmented_23": 23
+  },
+  "architectures_evaluated": {
+    "Cath": [
+      "RandomForest",
+      "SoftVoting"
+    ],
+    "LAD": [
+      "RandomForest"
+    ],
+    "LCX": [
+      "RandomForest",
+      "Stacking"
+    ],
+    "RCA": [
+      "RandomForest",
+      "Stacking"
+    ]
+  }
+}
